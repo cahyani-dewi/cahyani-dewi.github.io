@@ -1,190 +1,129 @@
 <!DOCTYPE html>
-<html lang="en-GB">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sarah Rashid | Data Visualisation Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+<!-- This HTML file provides a simple example of a portfolio page. It contains a header, a few sections, and a few charts. -->
+<!-- It works with the three css files in this folder: example1.css, example2.css and example3.css. -->
+<!-- The HTML file defines the structure of the page, and the CSS files define how it looks. -->
+<!-- The CSS examples are all designed to work with this page. Try swapping them out on line 29 and see what happens. -->
 
-    <link rel="icon" type="image/svg+xml" href="icon.png">
-    <link rel="alternate icon" href="icon.png">
+<!-- Take a look around and make your own copy to adapt for your own use. -->
 
-    <!-- Import Inter font from Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- This is a comment -->
+<!-- Comments are not displayed in the browser -->
+<!-- They can be used to leave notes in the code -->
+
+<html> 
+    <!-- HTML is heirarchial: tags like this define elements on the page. 
+    Each tag does something different. For example:
+        - The <html> tag defines the whole document.
+        - The <h1> tag defines a large heading
+        - The <p> tag defines a paragraph
+        - Tags appear as an opening <div> and closing </div> pair
+    -->
+
+<head>    
+    <!-- The head tag links to resources our page needs and defines information about it. Tags in the <head> aren't displayed on the page. -->
+
+    <!-- This is a link to a stylesheet which contains rules about how each element on the page should be defined-->
+    <!-- Try swapping to example3.css or another, and take a look at each example.css to see if you understand it-->
+    <link rel="stylesheet" type="text/css" href="Example3.css">
+    <title>My Portfolio</title> <!-- The title displayed in the browser tab, not on the page itself -->
+
+    <!-- This is a link to the vega-lite packages which we're using to make graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@6.4.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@6.4.3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@7.3.0"></script>
+
     <style>
-        /* Section fade-in on scroll */
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        /* CSS styles can be defined here, or in a separate CSS file */
+        #chartGrid {
+            display: flex;
         }
         
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
     </style>
 </head>
-<body>
-    <!-- Navigation Bar -->
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">Sarah Rashid</a>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="project.html">Project</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="section" style="background: linear-gradient(135deg, var(--primary-sage) 0%, var(--primary-teal) 100%); color: white; padding: var(--spacing-xl) 0;">
-        <div class="container text-center" style="padding-top: var(--spacing-lg);">
-            <h1 style="color: white; margin-bottom: var(--spacing-md); line-height: 1.3;">
-                Welcome
-            </h1>
-            <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto; opacity: 0.95; color: white;">
-                
-                I'm Sarah, a student exploring how data visualisation can illuminate patterns of inequality in education. This portfolio showcases my work in the Data Visualisation module, with a particular focus on understanding whether independent schools create educational advantages or simply reflect the privilege of already-advantaged areas.
+<body> 
+<!-- The body tag contains the elements that visitors to our page will see. -->
+    <h1 class="big" style="margin-bottom: 0px;"> <!-- We have added a class to the header called "big" which we can use to style it in the CSS -->
+        <!-- This is a header, it is the largest text on the page -->
+        My First Project
+    </h1>
+    <p style="margin-top: 0px; color: darkblue">
+        <!-- we're setting the margin to 0px so the header and author name are close together -->
+        Cahyani Dewi | <a href="https://www.linkedin.com/in/cahyanianisa/">LinkedIn</a> | <a
+            href="https://www.github.com/cahyani-dewi">GitHub</a>
+    </p>
+    <h3 class="small"> <!-- We have added a class to the header called "small" which we can use to style it in the CSS -->
+        This page is my portfolio of charts for Automated Data for Public Policy class. I copied some graphs from available resources, and some I made from scratch.  
+    </h3>
 
-            </p>
-        </div>
-    </section>
-
-    <!-- Featured Work Cards -->
-    <section class="section fade-in-section" style="background-color: var(--cream);">
-        <div class="container">
-            <h2 class="text-center mb-lg">PP434 Coursework</h2>
-            <div class="grid grid-3">
-
-                <!-- Card 1: About -->
-                <div class="card">
-                    <a href="about.html">
-                        <img src="home/me.jpg" alt="Sarah Rashid" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius-md); margin-bottom: var(--spacing-sm); cursor: pointer;">
-                    </a>
-                    <h3 class="card-title">My Story</h3>
-                    <p class="card-text">
-                        Learn about my personal connection to this research, including my experience attending 
-                        independent school on a full bursary and what drives my interest in educational access.
-                    </p>
-                    <a href="about.html" style="font-weight: 500; display: inline-block; margin-top: var(--spacing-sm); color: var(--primary-teal);">
-                        Read More →
-                    </a>
-                </div>
-
-                <!-- Card 2: Portfolio -->
-                <div class="card">
-                    <a href="portfolio.html">
-                        <img src="home/portfolio.jpg" alt="Portfolio tasks showcase" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius-md); margin-bottom: var(--spacing-sm); cursor: pointer;">
-                    </a>
-                    <h3 class="card-title">Portfolio Tasks</h3>
-                    <p class="card-text">
-                        A collection of ten weekly technical challenges covering web development, data visualisation, 
-                        APIs, scrapers, and interactive design throughout the module.
-                    </p>
-                    <a href="portfolio.html" style="font-weight: 500; display: inline-block; margin-top: var(--spacing-sm); color: var(--primary-teal);">
-                        View Portfolio →
-                    </a>
-                </div>
-
-                <!-- Card 3: Project -->
-                <div class="card">
-                    <a href="project.html">
-                        <img src="home/education.jpg" alt="Education and inequality visualisation" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius-md); margin-bottom: var(--spacing-sm); cursor: pointer;">
-                    </a>
-                    <h3 class="card-title">Education Project</h3>
-                    <p class="card-text">
-                        An interactive exploration of independent schools in England, examining geographic clustering, 
-                        historical costs, academic outcomes, and the relationship between private school density and local state school performance.
-                    </p>
-                    <a href="project.html" style="font-weight: 500; display: inline-block; margin-top: var(--spacing-sm); color: var(--primary-teal);">
-                        Explore Project →
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Key Statistics Section -->
-    <section class="section fade-in-section">
-        <div class="container">
-            <h2 class="text-center mb-lg">Project Highlights</h2>
-            <div class="grid grid-3">
-                <div style="text-align: center;">
-                    <div style="font-size: 3.5rem; font-family: var(--font-serif); font-weight: 600; color: var(--primary-teal); margin-bottom: var(--spacing-xs);">
-                        7
-                    </div>
-                    <p style="font-size: 1.1rem; color: var(--slate);">
-                        Interactive visualisations
-                    </p>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 3.5rem; font-family: var(--font-serif); font-weight: 600; color: var(--primary-sage); margin-bottom: var(--spacing-xs);">
-                        1,613
-                    </div>
-                    <p style="font-size: 1.1rem; color: var(--slate);">
-                        Independent schools mapped across England
-                    </p>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 3.5rem; font-family: var(--font-serif); font-weight: 600; color: var(--primary-forest); margin-bottom: var(--spacing-xs);">
-                        95 years
-                    </div>
-                    <p style="font-size: 1.1rem; color: var(--slate);">
-                        Of elite school fee data analysed (1930–2025)
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p style="margin-bottom: var(--spacing-sm); color: var(--cream);">
-                Sarah Rashid | Data Visualisation Portfolio
-            </p>
-            <p style="font-size: 0.9rem; opacity: 0.8;">
-                <a href="https://www.linkedin.com/in/sarah-r-005a70204/">LinkedIn</a> | 
-                <a href="https://github.com/SarahRashid0/SarahRashid0.github.io.git">GitHub</a>
+    <!-- We're organising the page into sections, with each section containing a chart, title and a description -->
+    <!-- ===== SECTION 1 ===== --> 
+    <section>
+        <div class="chart-description">
+            <h2>Section 1: A basic chart</h2>
+            <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
+                We've organised the page into sections, with each section containing a chart, title and a description. Here, we can describe the chart and give some context.
+                As a first example, we're using a basic chart from our repo.
             </p>
         </div>
 
-        <details class="ai-disclosure">
-            <summary>Disclosure</summary>
-            <p>Generative AI tools were used responsibly in the creation of this website for CSS styling and troubleshooting. All content and design decisions are my own.</p>
-        </details>
-    </footer>
+        <!-- This element will contain our vega-lite chart -->
+        <figure id="Location1"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed →
+    <section>
 
+<!-- ===== SECTION 2 ===== --> 
+        <section>
+        <div class="chart-description">
+            <h2>Section 2: Copying a basic chart</h2>
+            <p>This section shows the same chart a second time, to practise adding a new section to the page.
+The figure below has its own id (Location2), which the script uses to know where to draw this chart.
+            </p>
+        </div>
+
+        <!-- This element will contain our second vega-lite chart -->
+        <figure id="Location2"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
+
+    </section>
+<!-- ===== SECTION 3 ===== --> 
+         <section>
+        <div class="chart-description">
+            <h2>Section 3: Two charts side by side </h2>
+            <p>This section shows the different chart next to each other.
+            </p>
+        </div>
+<!-- Everything inside chartGrid sits side by side -->
+    <div id="chartGrid">
+        <figure id="Location3"></figure>
+        <figure id="Location4"></figure>
+    </div>
+</section>
+    <!-- Do you want to add more sections? -->
+        <!-- Try copying pasting the section above -->
+        <!-- You'll need to change the id of the figure "<figure id="Location2"... -->
+        <!-- ... and add a new variable for the graph spec in the script at the bottom of the page -->
+
+    <!-- This is a script, it's a way to run JavaScript code on the page -->
     <script>
-        // Fade-in scroll effect
-        const faders = document.querySelectorAll('.fade-in-section');
+        // This is a comment in JavaScript - it's a different language to HTML and CSS
+        // Graph 1
+        let figure_1_spec = "https://raw.githubusercontent.com/EconomicsObservatory/courses/main/2/s2_chart2.json";vegaEmbed('#Location1', figure_1_spec);// We're storing the URL of the graph we want to display in a variable // You should have a spec for a graph in this same folder. Just specify its name here, e.g. let figure_1_spec = "chart1.json" vegaEmbed('#Location1', figure_1_spec) // We're using the vegaEmbed function to put graph 1 in the element with id Location1 
+        // Graph 2 
+        let figure_2_spec = "https://raw.githubusercontent.com/EconomicsObservatory/ECOvisualisations/refs/heads/main/articles/what-do-the-latest-data-tell-us-about-uk-wage-growth/visualisation/fig1_wage.json";vegaEmbed('#Location2', figure_2_spec); // Same chart address, so the same graph appears again vegaEmbed('#Location2', figure_2_spec) // Puts graph 2 in the element with id Location2 
+        // Graph 3 (left)
+        let figure_3_spec = "https://raw.githubusercontent.com/RDeconomist/RDeconomist.github.io/refs/heads/main/charts/library/chartLine0.json";vegaEmbed('#Location3', figure_3_spec);
+        // Graph 4 (right)
+        let figure_4_spec = "https://raw.githubusercontent.com/EconomicsObservatory/courses/main/2/s2_chart1.json";vegaEmbed('#Location4', figure_4_spec);
         
-        const appearOptions = {
-            threshold: 0.15,
-            rootMargin: "0px 0px -100px 0px"
-        };
+        // You should have a spec for a graph in this same folder. Just specify its name here, e.g. let figure_1_spec = "chart1.json"
+        // Do you want to add more graphs?
+        // try defining a new variable for figure_2_spec, adding VegaEmbed for Location2, and adding a new section in the HTML
+        // e.g. 
+        // let figure_2_spec = ...
+        // vegaEmbed('#Location2', figure_2_spec)
 
-        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) {
-                    return;
-                } else {
-                    entry.target.classList.add('is-visible');
-                    appearOnScroll.unobserve(entry.target);
-                }
-            });
-        }, appearOptions);
 
-        faders.forEach(fader => {
-            appearOnScroll.observe(fader);
-        });
     </script>
+
 </body>
+    
 </html>
