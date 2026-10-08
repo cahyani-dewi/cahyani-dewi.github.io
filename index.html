@@ -1,36 +1,190 @@
 <!DOCTYPE html>
-<html>
-
-<!-- Richard Davies, Data Science -->
-
-<!-- CODING LESSON NUMBER 1 -->
-<!-- Commenting your code is vital, vital, vital -->
-
-<!-- This is how you add comments to HTML -->
-
-<!-- You can also include
-multi - line comments
-if you find that useful -->
-
-<!-- To turn text into a comment, use the=is short-cut: CTRL & the "/" key (command + "/" on Mac)-->
-
-
-<!-- HOW HTML WORKS - THE BASICS -->
-<!-- HTML files have two fundamental parts. (1) The head, (2) The body -->
-
-<!-- The head contains things that you do not see on the page -->
-
+<html lang="en-GB">
 <head>
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarah Rashid | Data Visualisation Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
 
-    <link rel="stylesheet" href="Example2.css">
+    <link rel="icon" type="image/svg+xml" href="icon.png">
+    <link rel="alternate icon" href="icon.png">
+
+    <!-- Import Inter font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Section fade-in on scroll */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
-
-<!-- The body contains thigs you see -->
-<!-- Most elements both open and close, with the content in the middle -->
-<!-- Indenting is optional, but helps with readability -->
 <body>
-    <h1>This is my first task on Automated Data Class</h1>
-    <p>So far I like it</p>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Sarah Rashid</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="project.html">Project</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="section" style="background: linear-gradient(135deg, var(--primary-sage) 0%, var(--primary-teal) 100%); color: white; padding: var(--spacing-xl) 0;">
+        <div class="container text-center" style="padding-top: var(--spacing-lg);">
+            <h1 style="color: white; margin-bottom: var(--spacing-md); line-height: 1.3;">
+                Welcome
+            </h1>
+            <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto; opacity: 0.95; color: white;">
+                
+                I'm Sarah, a student exploring how data visualisation can illuminate patterns of inequality in education. This portfolio showcases my work in the Data Visualisation module, with a particular focus on understanding whether independent schools create educational advantages or simply reflect the privilege of already-advantaged areas.
+
+            </p>
+        </div>
+    </section>
+
+    <!-- Featured Work Cards -->
+    <section class="section fade-in-section" style="background-color: var(--cream);">
+        <div class="container">
+            <h2 class="text-center mb-lg">PP434 Coursework</h2>
+            <div class="grid grid-3">
+
+                <!-- Card 1: About -->
+                <div class="card">
+                    <a href="about.html">
+                        <img src="home/me.jpg" alt="Sarah Rashid" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius-md); margin-bottom: var(--spacing-sm); cursor: pointer;">
+                    </a>
+                    <h3 class="card-title">My Story</h3>
+                    <p class="card-text">
+                        Learn about my personal connection to this research, including my experience attending 
+                        independent school on a full bursary and what drives my interest in educational access.
+                    </p>
+                    <a href="about.html" style="font-weight: 500; display: inline-block; margin-top: var(--spacing-sm); color: var(--primary-teal);">
+                        Read More →
+                    </a>
+                </div>
+
+                <!-- Card 2: Portfolio -->
+                <div class="card">
+                    <a href="portfolio.html">
+                        <img src="home/portfolio.jpg" alt="Portfolio tasks showcase" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius-md); margin-bottom: var(--spacing-sm); cursor: pointer;">
+                    </a>
+                    <h3 class="card-title">Portfolio Tasks</h3>
+                    <p class="card-text">
+                        A collection of ten weekly technical challenges covering web development, data visualisation, 
+                        APIs, scrapers, and interactive design throughout the module.
+                    </p>
+                    <a href="portfolio.html" style="font-weight: 500; display: inline-block; margin-top: var(--spacing-sm); color: var(--primary-teal);">
+                        View Portfolio →
+                    </a>
+                </div>
+
+                <!-- Card 3: Project -->
+                <div class="card">
+                    <a href="project.html">
+                        <img src="home/education.jpg" alt="Education and inequality visualisation" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius-md); margin-bottom: var(--spacing-sm); cursor: pointer;">
+                    </a>
+                    <h3 class="card-title">Education Project</h3>
+                    <p class="card-text">
+                        An interactive exploration of independent schools in England, examining geographic clustering, 
+                        historical costs, academic outcomes, and the relationship between private school density and local state school performance.
+                    </p>
+                    <a href="project.html" style="font-weight: 500; display: inline-block; margin-top: var(--spacing-sm); color: var(--primary-teal);">
+                        Explore Project →
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Statistics Section -->
+    <section class="section fade-in-section">
+        <div class="container">
+            <h2 class="text-center mb-lg">Project Highlights</h2>
+            <div class="grid grid-3">
+                <div style="text-align: center;">
+                    <div style="font-size: 3.5rem; font-family: var(--font-serif); font-weight: 600; color: var(--primary-teal); margin-bottom: var(--spacing-xs);">
+                        7
+                    </div>
+                    <p style="font-size: 1.1rem; color: var(--slate);">
+                        Interactive visualisations
+                    </p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 3.5rem; font-family: var(--font-serif); font-weight: 600; color: var(--primary-sage); margin-bottom: var(--spacing-xs);">
+                        1,613
+                    </div>
+                    <p style="font-size: 1.1rem; color: var(--slate);">
+                        Independent schools mapped across England
+                    </p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 3.5rem; font-family: var(--font-serif); font-weight: 600; color: var(--primary-forest); margin-bottom: var(--spacing-xs);">
+                        95 years
+                    </div>
+                    <p style="font-size: 1.1rem; color: var(--slate);">
+                        Of elite school fee data analysed (1930–2025)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p style="margin-bottom: var(--spacing-sm); color: var(--cream);">
+                Sarah Rashid | Data Visualisation Portfolio
+            </p>
+            <p style="font-size: 0.9rem; opacity: 0.8;">
+                <a href="https://www.linkedin.com/in/sarah-r-005a70204/">LinkedIn</a> | 
+                <a href="https://github.com/SarahRashid0/SarahRashid0.github.io.git">GitHub</a>
+            </p>
+        </div>
+
+        <details class="ai-disclosure">
+            <summary>Disclosure</summary>
+            <p>Generative AI tools were used responsibly in the creation of this website for CSS styling and troubleshooting. All content and design decisions are my own.</p>
+        </details>
+    </footer>
+
+    <script>
+        // Fade-in scroll effect
+        const faders = document.querySelectorAll('.fade-in-section');
+        
+        const appearOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -100px 0px"
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('is-visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+    </script>
 </body>
 </html>
