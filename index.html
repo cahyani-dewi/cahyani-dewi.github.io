@@ -97,6 +97,19 @@ The figure below has its own id (Location2), which the script uses to know where
         <figure id="Location4"></figure>
     </div>
 </section>
+<!-- ===== SECTION 4 ===== --> 
+         <section>
+        <div class="chart-description">
+            <h2>Section 4: Import data and create a chart </h2>
+            <p>This section shows the chart comes from the CSV file stored in my own github.
+            </p>
+        </div>
+<!-- Everything inside chartGrid sits side by side -->
+    <div id="chartGrid">
+        <figure id="Location5"></figure>
+        <figure id="Location6"></figure>
+    </div>
+</section>
     <!-- Do you want to add more sections? -->
         <!-- Try copying pasting the section above -->
         <!-- You'll need to change the id of the figure "<figure id="Location2"... -->
@@ -113,6 +126,10 @@ The figure below has its own id (Location2), which the script uses to know where
         let figure_3_spec = "https://raw.githubusercontent.com/RDeconomist/RDeconomist.github.io/refs/heads/main/charts/library/chartLine0.json";vegaEmbed('#Location3', figure_3_spec);
         // Graph 4 (right)
         let figure_4_spec = "https://raw.githubusercontent.com/EconomicsObservatory/courses/main/2/s2_chart1.json";vegaEmbed('#Location4', figure_4_spec);
+        // Graph 5 (left)
+        let figure_3_spec = "https://raw.githubusercontent.com/cahyani-dewi/cahyani-dewi.github.io/refs/heads/main/GDPUK.json";vegaEmbed('#Location3', figure_5_spec);
+        // Graph 6 (right)
+        let figure_4_spec = "https://raw.githubusercontent.com/cahyani-dewi/cahyani-dewi.github.io/refs/heads/main/GDPUK.json";vegaEmbed('#Location4', figure_6_spec);
         
         // You should have a spec for a graph in this same folder. Just specify its name here, e.g. let figure_1_spec = "chart1.json"
         // Do you want to add more graphs?
