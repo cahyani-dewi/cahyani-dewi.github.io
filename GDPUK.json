@@ -1,0 +1,15 @@
+{"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+    "data": {
+       "url": "https://raw.githubusercontent.com/cahyani-dewi/cahyani-dewi.github.io/refs/heads/main/GDP%20value%20yearly%20-%20Sheet1.csv"},
+      "title": {"text": "UK Yearly Gross Domestic Value","subtitle":"1950-2025"},
+
+    "width":500,
+    "height":300,
+
+    "mark":{"type": "line","color":"blueviolet"},
+ 
+    "encoding": {
+      "x": {"field": "quarter","type": "temporal","title":"Year"},
+      "y": {"field": "value","type": "quantitative","title":"GDP"}
+    }}
