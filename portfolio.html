@@ -1,76 +1,168 @@
 <!DOCTYPE html>
-<html> 
-<head>    
-    <link rel="stylesheet" type="text/css" href="Example3.css">
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cahyani Dewi | Automated Data Visualization</title>
+
+    <!-- Fonts + shared site style -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css">
+
+    <!-- Vega libraries for the charts -->
     <script src="https://cdn.jsdelivr.net/npm/vega@6.4.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@6.4.3"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@7.3.0"></script>
-
-    <style> 
-        #chartGrid {
-            display: flex;
-        }
-        
-    </style>
 </head>
 
-<body> 
-    <h1 class="big" style="margin-bottom: 0px;"> 
-        Data Visualization Portfolio
-    </h1>
-    <p style="margin-top: 0px; color: darkblue">
-        <!-- we're setting the margin to 0px so the header and author name are close together -->
-        Cahyani Dewi | <a href="https://www.linkedin.com/in/cahyanianisa/">LinkedIn</a> | <a
-            href="https://www.github.com/cahyani-dewi">GitHub</a>
-    </p>
-    <h3 class="small">
-        This page is my portfolio of charts for Automated Data for Public Policy class. I copied some graphs from available resources, and some I made from scratch.  
-    </h3>
-    <!-- ===== SECTION 1 ===== --> 
-    <section>
-        <div class="chart-description">
-            <h2>Section 1: A basic chart</h2>
-            <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
-                We've organised the page into sections, with each section containing a chart, title and a description. Here, we can describe the chart and give some context.
-                As a first example, we're using a basic chart from our repo.
-            </p>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <a class="brand" href="index.html">Cahyani Dewi</a>
+        <div class="links">
+            <a href="index.html">Project</a>
+            <a href="portfolio.html" class="current">Portfolio</a>
+            <a href="https://www.github.com/cahyani-dewi">GitHub</a>
+            <a href="https://www.linkedin.com/in/cahyanianisa/">LinkedIn</a>
         </div>
-        <figure id="Location1"></figure> 
-<!-- ===== SECTION 2 ===== --> 
-        <section>
-        <div class="chart-description">
-            <h2>Section 2: Copying a basic chart</h2>
-            <p>This section shows the same chart a second time, to practise adding a new section to the page.
-The figure below has its own id (Location2), which the script uses to know where to draw this chart.
-            </p>
-        </div>     
-        <figure id="Location2"></figure>
-    </section>
-<!-- ===== SECTION 3 ===== --> 
-         <section>
-        <div class="chart-description">
-            <h2>Section 3: Two charts side by side </h2>
-            <p>This section shows the different chart next to each other.
-            </p>
+    </nav>
+
+    <main class="content">
+
+        <!-- ===== TITLE ===== -->
+        <div class="hero">
+            <h1>Data Visualization Portfolio</h1>
+            <p>My portfolio of charts for the Automated Data for Public Policy class. I copied some graphs from available resources, and some I made from scratch.</p>
         </div>
-    <div id="chartGrid">
-        <figure id="Location3"></figure>
-        <figure id="Location4"></figure>
-    </div>
-</section>
+
+        <!-- ===== FLOATING TASK TABS ===== -->
+        <nav class="task-tabs">
+            <a href="#task1">Task 1</a>
+            <a href="#task2">Task 2</a>
+            <a href="#task3">Task 3</a>
+            <a href="#task4">Task 4</a>
+            <a href="#task5">Task 5</a>
+            <a href="#task6">Task 6</a>
+            <a href="#task7">Task 7</a>
+            <a href="#task8">Task 8</a>
+            <a href="#task9">Task 9</a>
+            <a href="#task10">Task 10</a>
+        </nav>
+
+        <!-- ===== TASK 1 ===== -->
+        <section id="task1" class="task">
+            <span class="task-label">Task 1</span>
+            <h2>A basic chart</h2>
+            <p>We've organised the page into sections, with each section containing a chart, title and a description. Here, we can describe the chart and give some context. As a first example, we're using a basic chart from our repo.</p>
+            <figure id="Location1"></figure>
+        </section>
+
+        <!-- ===== TASK 2 ===== -->
+        <section id="task2" class="task">
+            <span class="task-label">Task 2</span>
+            <h2>Copying a basic chart</h2>
+            <p>This section adds a second chart, to practise adding a new section to the page. The figure below has its own id (Location2), which the script uses to know where to draw this chart.</p>
+            <figure id="Location2"></figure>
+        </section>
+
+        <!-- ===== TASK 3 ===== -->
+        <section id="task3" class="task">
+            <span class="task-label">Task 3</span>
+            <h2>Two charts side by side</h2>
+            <p>This section shows two different charts next to each other.</p>
+            <div class="chart-grid">
+                <figure id="Location3"></figure>
+                <figure id="Location4"></figure>
+            </div>
+        </section>
+
+        <!-- ===== TASKS 4–10 (placeholders) =====
+             To fill one in: remove " placeholder" from the class,
+             write the title and text, and add its vegaEmbed line in the script at the bottom. -->
+        <section id="task4" class="task placeholder">
+            <span class="task-label">Task 4</span>
+            <h2>Coming soon</h2>
+            <figure id="Location5"></figure>
+        </section>
+
+        <section id="task5" class="task placeholder">
+            <span class="task-label">Task 5</span>
+            <h2>Coming soon</h2>
+            <figure id="Location6"></figure>
+        </section>
+
+        <section id="task6" class="task placeholder">
+            <span class="task-label">Task 6</span>
+            <h2>Coming soon</h2>
+            <figure id="Location7"></figure>
+        </section>
+
+        <section id="task7" class="task placeholder">
+            <span class="task-label">Task 7</span>
+            <h2>Coming soon</h2>
+            <figure id="Location8"></figure>
+        </section>
+
+        <section id="task8" class="task placeholder">
+            <span class="task-label">Task 8</span>
+            <h2>Coming soon</h2>
+            <figure id="Location9"></figure>
+        </section>
+
+        <section id="task9" class="task placeholder">
+            <span class="task-label">Task 9</span>
+            <h2>Coming soon</h2>
+            <figure id="Location10"></figure>
+        </section>
+
+        <section id="task10" class="task placeholder">
+            <span class="task-label">Task 10</span>
+            <h2>Coming soon</h2>
+            <figure id="Location11"></figure>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>© 2026 Cahyani Dewi · PP434 Automated Data for Public Policy, LSE</p>
+    </footer>
+
+    <!-- ===== CHARTS ===== -->
     <script>
-        // Graph 1
-        let figure_1_spec = "https://raw.githubusercontent.com/EconomicsObservatory/courses/main/2/s2_chart2.json";vegaEmbed('#Location1', figure_1_spec);// We're storing the URL of the graph we want to display in a variable // You should have a spec for a graph in this same folder. Just specify its name here, e.g. let figure_1_spec = "chart1.json" vegaEmbed('#Location1', figure_1_spec) // We're using the vegaEmbed function to put graph 1 in the element with id Location1 
-        // Graph 2 
-        let figure_2_spec = "https://raw.githubusercontent.com/EconomicsObservatory/ECOvisualisations/refs/heads/main/articles/what-do-the-latest-data-tell-us-about-uk-wage-growth/visualisation/fig1_wage.json";vegaEmbed('#Location2', figure_2_spec); // Same chart address, so the same graph appears again vegaEmbed('#Location2', figure_2_spec) // Puts graph 2 in the element with id Location2 
-        // Graph 3 (left)
-        let figure_3_spec = "https://raw.githubusercontent.com/RDeconomist/RDeconomist.github.io/refs/heads/main/charts/library/chartLine0.json";vegaEmbed('#Location3', figure_3_spec);
-        // Graph 4 (right)
-        let figure_4_spec = "https://raw.githubusercontent.com/EconomicsObservatory/courses/main/2/s2_chart1.json";vegaEmbed('#Location4', figure_4_spec);
-        
+        // Task 1
+        let figure_1_spec = "https://raw.githubusercontent.com/EconomicsObservatory/courses/main/2/s2_chart2.json";
+        vegaEmbed('#Location1', figure_1_spec);
+
+        // Task 2
+        let figure_2_spec = "https://raw.githubusercontent.com/EconomicsObservatory/ECOvisualisations/refs/heads/main/articles/what-do-the-latest-data-tell-us-about-uk-wage-growth/visualisation/fig1_wage.json";
+        vegaEmbed('#Location2', figure_2_spec);
+
+        // Task 3 (left and right)
+        let figure_3_spec = "https://raw.githubusercontent.com/RDeconomist/RDeconomist.github.io/refs/heads/main/charts/library/chartLine0.json";
+        vegaEmbed('#Location3', figure_3_spec);
+        let figure_4_spec = "https://raw.githubusercontent.com/EconomicsObservatory/courses/main/2/s2_chart1.json";
+        vegaEmbed('#Location4', figure_4_spec);
+
+        // Task 4 onwards: uncomment and paste your chart's link, e.g.
+        // vegaEmbed('#Location5', "your_chart.json");
+        // vegaEmbed('#Location6', "your_chart.json");
+    </script>
+
+    <!-- ===== Highlight the task tab you're reading ===== -->
+    <script>
+        const tabs = document.querySelectorAll('.task-tabs a');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    tabs.forEach(t => t.classList.toggle('active',
+                        t.getAttribute('href') === '#' + e.target.id));
+                }
+            });
+        }, { rootMargin: '-40% 0px -55% 0px' });
+        document.querySelectorAll('section.task').forEach(s => observer.observe(s));
     </script>
 
 </body>
-    
 </html>
