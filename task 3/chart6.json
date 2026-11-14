@@ -1,0 +1,376 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Spending more doesn't guarantee learning more",
+    "anchor": "start",
+    "subtitle": "Education spending (% of GDP, latest year 2015–2020) vs harmonized test scores, 2020",
+    "subtitleColor": "#52514e"
+  },
+  "width": 600,
+  "height": 400,
+  "data": {
+    "url": "https://api.worldbank.org/v2/country/all/indicator/SE.XPD.TOTL.GD.ZS?format=json&date=2015:2020&per_page=2000",
+    "format": {
+      "type": "json",
+      "property": "1"
+    }
+  },
+  "transform": [
+    {
+      "filter": "isValid(datum.value) && datum.countryiso3code !== ''"
+    },
+    {
+      "filter": {
+        "not": {
+          "field": "countryiso3code",
+          "oneOf": [
+            "AFE",
+            "AFW",
+            "ARB",
+            "CEB",
+            "CSS",
+            "EAP",
+            "EAR",
+            "EAS",
+            "ECA",
+            "ECS",
+            "EMU",
+            "EUU",
+            "FCS",
+            "HIC",
+            "HPC",
+            "IBD",
+            "IBT",
+            "IDA",
+            "IDB",
+            "IDX",
+            "INX",
+            "LAC",
+            "LCN",
+            "LDC",
+            "LIC",
+            "LMC",
+            "LMY",
+            "LTE",
+            "MEA",
+            "MIC",
+            "MNA",
+            "NAC",
+            "OED",
+            "OSS",
+            "PRE",
+            "PSS",
+            "PST",
+            "SAS",
+            "SSA",
+            "SSF",
+            "SST",
+            "TEA",
+            "TEC",
+            "TLA",
+            "TMN",
+            "TSA",
+            "TSS",
+            "UMC",
+            "WLD"
+          ]
+        }
+      }
+    },
+    {
+      "calculate": "toNumber(datum.date)",
+      "as": "year"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "max",
+          "field": "year",
+          "as": "latest"
+        }
+      ],
+      "groupby": [
+        "countryiso3code"
+      ]
+    },
+    {
+      "filter": "datum.year === datum.latest"
+    },
+    {
+      "calculate": "datum.value",
+      "as": "spending"
+    },
+    {
+      "calculate": "datum.country.value",
+      "as": "name"
+    },
+    {
+      "lookup": "countryiso3code",
+      "from": {
+        "data": {
+          "url": "https://api.worldbank.org/v2/country/all/indicator/HD.HCI.HLOS?format=json&date=2020&per_page=400",
+          "format": {
+            "type": "json",
+            "property": "1"
+          }
+        },
+        "key": "countryiso3code",
+        "fields": [
+          "value"
+        ]
+      },
+      "as": [
+        "score"
+      ]
+    },
+    {
+      "filter": "isValid(datum.score)"
+    },
+    {
+      "calculate": "indexof([\"SGP\", \"VNM\", \"MYS\", \"THA\", \"BRN\", \"IDN\", \"PHL\", \"KHM\", \"LAO\", \"MMR\"], datum.countryiso3code) >= 0 ? 'ASEAN' : 'Rest of world'",
+      "as": "group"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 70,
+        "stroke": "#fcfcfb",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "spending",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              10
+            ],
+            "clamp": true
+          },
+          "axis": {
+            "title": "Public education spending (% of GDP)",
+            "titleColor": "#52514e",
+            "titleFontWeight": "normal",
+            "labelColor": "#52514e",
+            "gridColor": "#ecebe8",
+            "domain": false,
+            "ticks": false
+          }
+        },
+        "y": {
+          "field": "score",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              250,
+              600
+            ]
+          },
+          "axis": {
+            "title": "Harmonized test score",
+            "titleColor": "#52514e",
+            "titleFontWeight": "normal",
+            "labelColor": "#52514e",
+            "gridColor": "#ecebe8",
+            "domain": false,
+            "ticks": false
+          }
+        },
+        "color": {
+          "field": "group",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "ASEAN",
+              "Rest of world"
+            ],
+            "range": [
+              "#2a78d6",
+              "#c3c2b7"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top",
+            "direction": "horizontal",
+            "labelColor": "#52514e"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "name",
+            "title": "Country"
+          },
+          {
+            "field": "spending",
+            "type": "quantitative",
+            "title": "Spending (% GDP)",
+            "format": ".1f"
+          },
+          {
+            "field": "year",
+            "type": "quantitative",
+            "title": "Spending year",
+            "format": "d"
+          },
+          {
+            "field": "score",
+            "type": "quantitative",
+            "title": "Test score",
+            "format": ".0f"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "filter": "datum.group === 'Rest of world'"
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 90,
+        "stroke": "#fcfcfb",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "spending",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              10
+            ],
+            "clamp": true
+          },
+          "axis": {
+            "title": "Public education spending (% of GDP)",
+            "titleColor": "#52514e",
+            "titleFontWeight": "normal",
+            "labelColor": "#52514e",
+            "gridColor": "#ecebe8",
+            "domain": false,
+            "ticks": false
+          }
+        },
+        "y": {
+          "field": "score",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              250,
+              600
+            ]
+          },
+          "axis": {
+            "title": "Harmonized test score",
+            "titleColor": "#52514e",
+            "titleFontWeight": "normal",
+            "labelColor": "#52514e",
+            "gridColor": "#ecebe8",
+            "domain": false,
+            "ticks": false
+          }
+        },
+        "color": {
+          "field": "group",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "ASEAN",
+              "Rest of world"
+            ],
+            "range": [
+              "#2a78d6",
+              "#c3c2b7"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top",
+            "direction": "horizontal",
+            "labelColor": "#52514e"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "name",
+            "title": "Country"
+          },
+          {
+            "field": "spending",
+            "type": "quantitative",
+            "title": "Spending (% GDP)",
+            "format": ".1f"
+          },
+          {
+            "field": "year",
+            "type": "quantitative",
+            "title": "Spending year",
+            "format": "d"
+          },
+          {
+            "field": "score",
+            "type": "quantitative",
+            "title": "Test score",
+            "format": ".0f"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "filter": "datum.group === 'ASEAN'"
+        }
+      ]
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "field": "countryiso3code",
+            "oneOf": [
+              "IDN",
+              "VNM",
+              "SGP",
+              "PHL"
+            ]
+          }
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 7,
+        "dy": -6,
+        "fontSize": 12,
+        "color": "#0b0b0b",
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "x": {
+          "field": "spending",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "score",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "name"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}
