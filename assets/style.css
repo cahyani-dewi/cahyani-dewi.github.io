@@ -166,3 +166,11 @@ footer {
   .hero h1 { font-size: 2rem; }
   .task { padding: 20px; }
 }
+
+/* ----- Side-by-side charts shrink to fit ----- */
+.chart-grid figure .vega-embed { width: 100%; }
+.chart-grid figure svg, .chart-grid figure canvas { max-width: 100%; height: auto; }
+
+/* ----- Centre the task buttons ----- */
+.task-tabs a:first-child { margin-left: auto; }
+.task-tabs a:last-child  { margin-right: auto; }
