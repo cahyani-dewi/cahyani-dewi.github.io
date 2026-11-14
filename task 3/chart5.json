@@ -3,89 +3,41 @@
   "title": {
     "text": "Twelve years in school, eight years' worth of learning",
     "anchor": "start",
-    "subtitle": "Expected years of school vs learning-adjusted years, 2020",
+    "subtitle": "Expected years of school vs learning-adjusted years, latest available year. Source: World Bank Human Capital Index",
     "subtitleColor": "#52514e"
   },
   "width": 600,
-  "height": {
-    "step": 28
-  },
+  "height": { "step": 28 },
   "data": {
-    "url": "https://api.worldbank.org/v2/country/all/indicator/HD.HCI.EYRS?format=json&date=2020&per_page=400",
-    "format": {
-      "type": "json",
-      "property": "1"
-    }
+    "url": "https://api.worldbank.org/v2/country/SGP;VNM;MYS;THA;BRN;IDN;PHL;KHM;LAO;MMR;JPN;GBR;USA;IND/indicator/HD.HCI.EYRS?format=json&mrnev=1&per_page=100",
+    "format": { "type": "json", "property": "1" }
   },
   "transform": [
-    {
-      "filter": {
-        "field": "countryiso3code",
-        "oneOf": [
-          "SGP",
-          "VNM",
-          "MYS",
-          "THA",
-          "BRN",
-          "IDN",
-          "PHL",
-          "KHM",
-          "LAO",
-          "MMR",
-          "JPN",
-          "GBR",
-          "USA",
-          "IND"
-        ]
-      }
-    },
-    {
-      "calculate": "datum.value",
-      "as": "school"
-    },
-    {
-      "calculate": "datum.country.value",
-      "as": "name"
-    },
+    { "filter": "isValid(datum.value)" },
+    { "calculate": "datum.value", "as": "school" },
+    { "calculate": "datum.country.value", "as": "name" },
+    { "calculate": "datum.date", "as": "year" },
     {
       "lookup": "countryiso3code",
       "from": {
         "data": {
-          "url": "https://api.worldbank.org/v2/country/all/indicator/HD.HCI.LAYS?format=json&date=2020&per_page=400",
-          "format": {
-            "type": "json",
-            "property": "1"
-          }
+          "url": "https://api.worldbank.org/v2/country/SGP;VNM;MYS;THA;BRN;IDN;PHL;KHM;LAO;MMR;JPN;GBR;USA;IND/indicator/HD.HCI.LAYS?format=json&mrnev=1&per_page=100",
+          "format": { "type": "json", "property": "1" }
         },
         "key": "countryiso3code",
-        "fields": [
-          "value"
-        ]
+        "fields": ["value"]
       },
-      "as": [
-        "learning"
-      ]
+      "as": ["learning"]
     },
-    {
-      "filter": "isValid(datum.school) && isValid(datum.learning)"
-    },
-    {
-      "calculate": "datum.school - datum.learning",
-      "as": "gap"
-    },
-    {
-      "calculate": "'−' + format(datum.gap, '.1f') + ' yrs'",
-      "as": "gap_label"
-    }
+    { "filter": "isValid(datum.school) && isValid(datum.learning)" },
+    { "calculate": "datum.school - datum.learning", "as": "gap" },
+    { "calculate": "'−' + format(datum.gap, '.1f') + ' yrs'", "as": "gap_label" }
   ],
   "encoding": {
     "y": {
       "field": "name",
       "type": "nominal",
-      "sort": {
-        "field": "learning",
-        "order": "descending"
-      },
+      "sort": { "field": "learning", "order": "descending" },
       "axis": {
         "title": null,
         "domain": false,
@@ -94,10 +46,7 @@
         "labelColor": "#0b0b0b",
         "labelFontSize": 12,
         "labelFontWeight": {
-          "condition": {
-            "test": "datum.value === 'Indonesia'",
-            "value": "bold"
-          },
+          "condition": { "test": "datum.value === 'Indonesia'", "value": "bold" },
           "value": "normal"
         }
       }
@@ -105,21 +54,12 @@
   },
   "layer": [
     {
-      "mark": {
-        "type": "rule",
-        "strokeWidth": 2,
-        "color": "#c3c2b7"
-      },
+      "mark": { "type": "rule", "strokeWidth": 2, "color": "#c3c2b7" },
       "encoding": {
         "x": {
           "field": "learning",
           "type": "quantitative",
-          "scale": {
-            "domain": [
-              0,
-              15
-            ]
-          },
+          "scale": { "domain": [0, 15] },
           "axis": {
             "title": "Years",
             "titleColor": "#52514e",
@@ -128,33 +68,15 @@
             "gridColor": "#ecebe8",
             "domain": false,
             "ticks": false,
-            "values": [
-              0,
-              3,
-              6,
-              9,
-              12,
-              15
-            ]
+            "values": [0, 3, 6, 9, 12, 15]
           }
         },
-        "x2": {
-          "field": "school"
-        }
+        "x2": { "field": "school" }
       }
     },
     {
       "transform": [
-        {
-          "fold": [
-            "school",
-            "learning"
-          ],
-          "as": [
-            "measure",
-            "years"
-          ]
-        },
+        { "fold": ["school", "learning"], "as": ["measure", "years"] },
         {
           "calculate": "datum.measure === 'school' ? 'Years in school' : 'Years of actual learning'",
           "as": "measure_label"
@@ -163,112 +85,45 @@
       "params": [
         {
           "name": "hover",
-          "select": {
-            "type": "point",
-            "on": "pointerover",
-            "fields": [
-              "name"
-            ],
-            "clear": "pointerout"
-          }
+          "select": { "type": "point", "on": "pointerover", "fields": ["name"], "clear": "pointerout" }
         }
       ],
-      "mark": {
-        "type": "point",
-        "filled": true,
-        "size": 110,
-        "stroke": "#fcfcfb",
-        "strokeWidth": 2,
-        "opacity": 1
-      },
+      "mark": { "type": "point", "filled": true, "size": 110, "stroke": "#fcfcfb", "strokeWidth": 2, "opacity": 1 },
       "encoding": {
-        "x": {
-          "field": "years",
-          "type": "quantitative"
-        },
+        "x": { "field": "years", "type": "quantitative" },
         "color": {
           "field": "measure_label",
           "type": "nominal",
           "scale": {
-            "domain": [
-              "Years in school",
-              "Years of actual learning"
-            ],
-            "range": [
-              "#2a78d6",
-              "#eb6834"
-            ]
+            "domain": ["Years in school", "Years of actual learning"],
+            "range": ["#2a78d6", "#eb6834"]
           },
-          "legend": {
-            "title": null,
-            "orient": "top",
-            "direction": "horizontal",
-            "labelColor": "#52514e"
-          }
+          "legend": { "title": null, "orient": "top", "direction": "horizontal", "labelColor": "#52514e" }
         },
         "size": {
-          "condition": {
-            "param": "hover",
-            "empty": false,
-            "value": 170
-          },
+          "condition": { "param": "hover", "empty": false, "value": 170 },
           "value": 110
         },
         "tooltip": [
-          {
-            "field": "name",
-            "title": "Country"
-          },
-          {
-            "field": "school",
-            "type": "quantitative",
-            "title": "Years in school",
-            "format": ".1f"
-          },
-          {
-            "field": "learning",
-            "type": "quantitative",
-            "title": "Years of learning",
-            "format": ".1f"
-          },
-          {
-            "field": "gap",
-            "type": "quantitative",
-            "title": "Years lost",
-            "format": ".1f"
-          }
+          { "field": "name", "title": "Country" },
+          { "field": "year", "title": "Year" },
+          { "field": "school", "type": "quantitative", "title": "Years in school", "format": ".1f" },
+          { "field": "learning", "type": "quantitative", "title": "Years of learning", "format": ".1f" },
+          { "field": "gap", "type": "quantitative", "title": "Years lost", "format": ".1f" }
         ]
       }
     },
     {
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "dx": 10,
-        "fontSize": 11,
-        "color": "#52514e"
-      },
+      "mark": { "type": "text", "align": "left", "dx": 10, "fontSize": 11, "color": "#52514e" },
       "encoding": {
-        "x": {
-          "field": "school",
-          "type": "quantitative"
-        },
-        "text": {
-          "field": "gap_label"
-        },
+        "x": { "field": "school", "type": "quantitative" },
+        "text": { "field": "gap_label" },
         "fontWeight": {
-          "condition": {
-            "test": "datum.name === 'Indonesia'",
-            "value": "bold"
-          },
+          "condition": { "test": "datum.name === 'Indonesia'", "value": "bold" },
           "value": "normal"
         }
       }
     }
   ],
-  "config": {
-    "view": {
-      "stroke": null
-    }
-  }
+  "config": { "view": { "stroke": null } }
 }
