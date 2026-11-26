@@ -1,0 +1,115 @@
+/* ===== Landing page (index.html) – loads after style.css ===== */
+
+.eyebrow {
+  margin: 0; font-family: "Inter", system-ui, sans-serif;
+  font-size: 13px; font-weight: 600; letter-spacing: .16em; color: var(--accent);
+}
+.eyebrow.small { font-size: 12px; letter-spacing: .12em; }
+
+.home-wrap { max-width: 1200px; margin: 0 auto; padding: 80px 32px; }
+.home-wrap h2, .home-band h2 {
+  margin: 10px 0 0; font-size: clamp(2.2rem, 4vw, 2.9rem); line-height: 1.1;
+}
+
+/* ----- Hero ----- */
+.home-hero {
+  max-width: 1200px; margin: 0 auto; padding: 96px 32px 88px;
+  display: flex; flex-wrap: wrap; gap: 64px; align-items: center;
+}
+.hero-text { flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+.hero-text h1 {
+  margin: 0; font-size: clamp(2.8rem, 6.5vw, 4.75rem);
+  line-height: 1.03; letter-spacing: -.01em;
+}
+.intro { margin: 0; font-size: 1.3rem; line-height: 1.65; color: #4b5768; max-width: 620px; }
+
+.buttons { display: flex; flex-wrap: wrap; gap: 14px; padding-top: 4px; }
+.btn {
+  display: inline-flex; align-items: center; min-height: 48px; padding: 0 26px;
+  border-radius: 8px; font-family: "Inter", system-ui, sans-serif;
+  font-weight: 600; font-size: 16px; text-decoration: none; transition: .2s;
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: #24507f; color: #fff; }
+.btn-outline { background: #fff; color: var(--ink); border: 1px solid #b9cbe0; }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+.social { display: flex; gap: 24px; font-family: "Inter", system-ui, sans-serif; font-size: 15px; }
+
+/* ----- Photo + card ----- */
+.hero-photo { flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; align-items: center; }
+.photo-ring {
+  width: min(340px, 80vw); aspect-ratio: 1; border-radius: 50%;
+  background: var(--banner-from); padding: 10px; box-sizing: border-box;
+}
+.photo-ring img {
+  width: 100%; height: 100%; display: block; border-radius: 50%;
+  object-fit: cover; object-position: center 25%;   /* move the % to adjust the crop */
+  border: 4px solid #fff; box-sizing: border-box; background: #dce9f6;
+}
+.exploring-card {
+  margin-top: -36px; position: relative; width: 320px; max-width: 100%;
+  background: #fff; border: 1px solid var(--line); border-radius: 16px;
+  padding: 22px 24px; box-shadow: 0 16px 36px rgba(31,42,55,.08);
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+.card-title {
+  margin: 0; font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 28px; font-weight: 600; line-height: 1.15; color: var(--ink);
+}
+.card-text { margin: 0; font-size: 16px; line-height: 1.6; color: #4b5768; }
+.card-link { font-family: "Inter", system-ui, sans-serif; font-size: 15px; font-weight: 600; color: var(--accent); }
+
+/* ----- Featured work ----- */
+.home-band { background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.work-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px; margin-top: 36px;
+}
+.work-card {
+  display: flex; flex-direction: column; gap: 14px; padding: 30px;
+  border-radius: 16px; border: 1px solid var(--line); background: var(--bg);
+  color: var(--ink); text-decoration: none; transition: transform .2s, box-shadow .2s;
+}
+.work-card:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(31,42,55,.08); }
+.work-card .card-title { font-size: 30px; }
+
+/* ----- Upcoming work & writing ----- */
+.writing { display: flex; flex-wrap: wrap; gap: 56px; }
+.writing-intro { flex: 1 1 300px; min-width: 0; }
+.writing-intro p:last-child { margin: 14px 0 0; color: #4b5768; line-height: 1.65; }
+.writing-list { flex: 2 1 560px; min-width: 0; border-top: 1px solid var(--line); }
+.writing-row {
+  display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: baseline;
+  padding: 24px 6px; border-bottom: 1px solid var(--line);
+  color: var(--ink); text-decoration: none; transition: background .2s;
+}
+.writing-row:hover { background: #fff; }
+.row-meta { flex: 0 0 150px; display: flex; flex-direction: column; gap: 6px; font-family: "Inter", system-ui, sans-serif; }
+.course { font-size: 13px; font-weight: 600; color: var(--accent); }
+.tag { align-self: flex-start; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; }
+.tag-progress { background: #e3eefa; color: #24507f; }
+.tag-soon { background: #fdf0e3; color: #8a4b12; }
+.row-body { flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.row-title { font-family: "Cormorant Garamond", Georgia, serif; font-size: 27px; font-weight: 600; line-height: 1.2; }
+.row-text { font-size: 16px; line-height: 1.55; color: #4b5768; }
+
+/* ----- Footer ----- */
+.home-footer {
+  max-width: 1200px; margin: 0 auto; padding: 36px 32px;
+  display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between;
+  font-family: "Inter", system-ui, sans-serif; font-size: 14px; color: #5b6878;
+  border-top: 1px solid var(--line);
+}
+.footer-links { display: flex; gap: 24px; }
+
+/* ----- Phones ----- */
+@media (max-width: 640px) {
+  .navbar { height: auto; flex-wrap: wrap; gap: 4px 0; padding: 12px 20px; }
+  .brand { white-space: nowrap; }
+  .links a { margin-left: 0; margin-right: 18px; }
+  .home-hero { padding: 56px 20px; gap: 48px; }
+  .home-wrap { padding: 56px 20px; }
+  .row-meta { flex-basis: 100%; flex-direction: row; align-items: center; }
+}
