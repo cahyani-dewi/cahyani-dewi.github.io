@@ -29,7 +29,6 @@ h1, h2, h3, .brand, .banner h1 {
 .links, footer, .card p, .stat span, .task-tabs, .task-label {
   font-family: "Inter", system-ui, sans-serif;
 }
-.task h2 { font-size: 1.8rem; }
 
 a { color: var(--accent); }
 
@@ -109,6 +108,15 @@ a { color: var(--accent); }
 }
 .task h2 { margin: 0 0 .4em; font-size: 1.5rem; }
 .task p { margin: 0 0 1em; }
+
+/* Question / sub-headings inside a task (e.g. the policy-debate question) */
+.task > h3 {
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--ink);
+  margin: 8px 0 12px;
+}
 .task.placeholder { color: var(--muted); border-style: dashed; }
 
 /* ----- Task heading + collapsible brief ----- */
