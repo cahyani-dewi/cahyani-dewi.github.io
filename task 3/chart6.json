@@ -1,376 +1,270 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Spending more doesn't guarantee learning more",
+    "text": "Vietnam's air didn't get cleaner",
+    "subtitle": [
+      "Air pollution: population-weighted PM2.5 (µg/m³), 2000–2024",
+      "Source: Our World in Data (population-weighted PM2.5 series)"
+    ],
     "anchor": "start",
-    "subtitle": "Education spending (% of GDP, latest year 2015–2020) vs harmonized test scores, 2020",
+    "fontSize": 16,
     "subtitleColor": "#52514e"
   },
-  "width": 600,
-  "height": 400,
-  "data": {
-    "url": "https://api.worldbank.org/v2/country/all/indicator/SE.XPD.TOTL.GD.ZS?format=json&date=2015:2020&per_page=2000",
-    "format": {
-      "type": "json",
-      "property": "1"
+  "config": {
+    "background": "#fcfcfb",
+    "font": "Helvetica, Arial, sans-serif",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelColor": "#52514e",
+      "titleColor": "#52514e",
+      "gridColor": "#e8e7e3",
+      "domainColor": "#c3c2b7",
+      "tickColor": "#c3c2b7",
+      "labelFontSize": 11,
+      "titleFontSize": 11,
+      "titleFontWeight": "normal"
     }
   },
-  "transform": [
-    {
-      "filter": "isValid(datum.value) && datum.countryiso3code !== ''"
+  "width": 560,
+  "height": 200,
+  "data": {
+    "url": "https://ourworldindata.org/grapher/outdoor-air-pollution-exposure.csv?v=1&csvType=full&useColumnShortNames=true",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "year": "number",
+        "population_weighted_pm25": "number"
+      }
+    }
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "quantitative",
+      "title": null,
+      "scale": {
+        "domain": [
+          2000,
+          2024
+        ]
+      },
+      "axis": {
+        "format": "d",
+        "tickCount": 6
+      }
     },
+    "y": {
+      "field": "pm25",
+      "type": "quantitative",
+      "title": null,
+      "scale": {
+        "domain": [
+          0,
+          30
+        ]
+      },
+      "axis": {
+        "tickCount": 4
+      }
+    }
+  },
+  "layer": [
     {
-      "filter": {
-        "not": {
-          "field": "countryiso3code",
-          "oneOf": [
-            "AFE",
-            "AFW",
-            "ARB",
-            "CEB",
-            "CSS",
-            "EAP",
-            "EAR",
-            "EAS",
-            "ECA",
-            "ECS",
-            "EMU",
-            "EUU",
-            "FCS",
-            "HIC",
-            "HPC",
-            "IBD",
-            "IBT",
-            "IDA",
-            "IDB",
-            "IDX",
-            "INX",
-            "LAC",
-            "LCN",
-            "LDC",
-            "LIC",
-            "LMC",
-            "LMY",
-            "LTE",
-            "MEA",
-            "MIC",
-            "MNA",
-            "NAC",
-            "OED",
-            "OSS",
-            "PRE",
-            "PSS",
-            "PST",
-            "SAS",
-            "SSA",
-            "SSF",
-            "SST",
-            "TEA",
-            "TEC",
-            "TLA",
-            "TMN",
-            "TSA",
-            "TSS",
-            "UMC",
-            "WLD"
-          ]
+      "data": {
+        "values": [
+          {
+            "who": 5
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "strokeDash": [
+          4,
+          4
+        ],
+        "color": "#8a8983",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "y": {
+          "field": "who",
+          "type": "quantitative"
+        },
+        "x": {
+          "value": 0
+        },
+        "x2": {
+          "value": 560
         }
       }
     },
     {
-      "calculate": "toNumber(datum.date)",
-      "as": "year"
-    },
-    {
-      "joinaggregate": [
-        {
-          "op": "max",
-          "field": "year",
-          "as": "latest"
-        }
-      ],
-      "groupby": [
-        "countryiso3code"
-      ]
-    },
-    {
-      "filter": "datum.year === datum.latest"
-    },
-    {
-      "calculate": "datum.value",
-      "as": "spending"
-    },
-    {
-      "calculate": "datum.country.value",
-      "as": "name"
-    },
-    {
-      "lookup": "countryiso3code",
-      "from": {
-        "data": {
-          "url": "https://api.worldbank.org/v2/country/all/indicator/HD.HCI.HLOS?format=json&date=2020&per_page=400",
-          "format": {
-            "type": "json",
-            "property": "1"
+      "data": {
+        "values": [
+          {
+            "who": 5,
+            "label": "WHO guideline: 5 µg/m³"
           }
-        },
-        "key": "countryiso3code",
-        "fields": [
-          "value"
         ]
       },
-      "as": [
-        "score"
-      ]
-    },
-    {
-      "filter": "isValid(datum.score)"
-    },
-    {
-      "calculate": "indexof([\"SGP\", \"VNM\", \"MYS\", \"THA\", \"BRN\", \"IDN\", \"PHL\", \"KHM\", \"LAO\", \"MMR\"], datum.countryiso3code) >= 0 ? 'ASEAN' : 'Rest of world'",
-      "as": "group"
-    }
-  ],
-  "layer": [
-    {
       "mark": {
-        "type": "point",
-        "filled": true,
-        "size": 70,
-        "stroke": "#fcfcfb",
-        "strokeWidth": 1
+        "type": "text",
+        "align": "left",
+        "dx": 4,
+        "dy": -7,
+        "fontSize": 11,
+        "color": "#52514e"
       },
       "encoding": {
-        "x": {
-          "field": "spending",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              0,
-              10
-            ],
-            "clamp": true
-          },
-          "axis": {
-            "title": "Public education spending (% of GDP)",
-            "titleColor": "#52514e",
-            "titleFontWeight": "normal",
-            "labelColor": "#52514e",
-            "gridColor": "#ecebe8",
-            "domain": false,
-            "ticks": false
-          }
-        },
         "y": {
-          "field": "score",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              250,
-              600
-            ]
-          },
-          "axis": {
-            "title": "Harmonized test score",
-            "titleColor": "#52514e",
-            "titleFontWeight": "normal",
-            "labelColor": "#52514e",
-            "gridColor": "#ecebe8",
-            "domain": false,
-            "ticks": false
-          }
+          "field": "who",
+          "type": "quantitative"
         },
-        "color": {
-          "field": "group",
-          "type": "nominal",
-          "scale": {
-            "domain": [
-              "ASEAN",
-              "Rest of world"
-            ],
-            "range": [
-              "#2a78d6",
-              "#c3c2b7"
-            ]
-          },
-          "legend": {
-            "title": null,
-            "orient": "top",
-            "direction": "horizontal",
-            "labelColor": "#52514e"
-          }
+        "x": {
+          "value": 0
         },
-        "tooltip": [
-          {
-            "field": "name",
-            "title": "Country"
-          },
-          {
-            "field": "spending",
-            "type": "quantitative",
-            "title": "Spending (% GDP)",
-            "format": ".1f"
-          },
-          {
-            "field": "year",
-            "type": "quantitative",
-            "title": "Spending year",
-            "format": "d"
-          },
-          {
-            "field": "score",
-            "type": "quantitative",
-            "title": "Test score",
-            "format": ".0f"
-          }
-        ]
-      },
-      "transform": [
-        {
-          "filter": "datum.group === 'Rest of world'"
+        "text": {
+          "field": "label"
         }
-      ]
+      }
     },
     {
       "mark": {
-        "type": "point",
-        "filled": true,
-        "size": 90,
-        "stroke": "#fcfcfb",
-        "strokeWidth": 1
+        "type": "line",
+        "strokeWidth": 2
       },
       "encoding": {
-        "x": {
-          "field": "spending",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              0,
-              10
-            ],
-            "clamp": true
-          },
-          "axis": {
-            "title": "Public education spending (% of GDP)",
-            "titleColor": "#52514e",
-            "titleFontWeight": "normal",
-            "labelColor": "#52514e",
-            "gridColor": "#ecebe8",
-            "domain": false,
-            "ticks": false
-          }
-        },
-        "y": {
-          "field": "score",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              250,
-              600
-            ]
-          },
-          "axis": {
-            "title": "Harmonized test score",
-            "titleColor": "#52514e",
-            "titleFontWeight": "normal",
-            "labelColor": "#52514e",
-            "gridColor": "#ecebe8",
-            "domain": false,
-            "ticks": false
-          }
+        "detail": {
+          "field": "entity"
         },
         "color": {
-          "field": "group",
-          "type": "nominal",
+          "field": "entity",
           "scale": {
             "domain": [
-              "ASEAN",
-              "Rest of world"
+              "Vietnam",
+              "Thailand",
+              "Philippines"
             ],
             "range": [
               "#2a78d6",
-              "#c3c2b7"
+              "#eb6834",
+              "#1baf7a"
             ]
           },
           "legend": {
-            "title": null,
             "orient": "top",
             "direction": "horizontal",
-            "labelColor": "#52514e"
-          }
-        },
-        "tooltip": [
-          {
-            "field": "name",
-            "title": "Country"
+            "symbolType": "stroke",
+            "symbolStrokeWidth": 2,
+            "labelColor": "#52514e",
+            "labelFontSize": 11,
+            "offset": 4
           },
-          {
-            "field": "spending",
-            "type": "quantitative",
-            "title": "Spending (% GDP)",
-            "format": ".1f"
-          },
-          {
-            "field": "year",
-            "type": "quantitative",
-            "title": "Spending year",
-            "format": "d"
-          },
-          {
-            "field": "score",
-            "type": "quantitative",
-            "title": "Test score",
-            "format": ".0f"
-          }
-        ]
-      },
-      "transform": [
-        {
-          "filter": "datum.group === 'ASEAN'"
+          "title": null
         }
-      ]
+      }
     },
     {
       "transform": [
         {
-          "filter": {
-            "field": "countryiso3code",
-            "oneOf": [
-              "IDN",
-              "VNM",
-              "SGP",
-              "PHL"
-            ]
-          }
+          "joinaggregate": [
+            {
+              "op": "max",
+              "field": "year",
+              "as": "last"
+            }
+          ],
+          "groupby": [
+            "entity"
+          ]
+        },
+        {
+          "filter": "datum.year === datum.last"
+        },
+        {
+          "calculate": "datum.pm25 + (datum.entity === 'Thailand' ? 1 : datum.entity === 'Philippines' ? -1 : 0)",
+          "as": "labelY"
         }
       ],
       "mark": {
         "type": "text",
         "align": "left",
-        "dx": 7,
-        "dy": -6,
-        "fontSize": 12,
-        "color": "#0b0b0b",
-        "fontWeight": "bold"
+        "dx": 6,
+        "fontSize": 11
       },
       "encoding": {
-        "x": {
-          "field": "spending",
-          "type": "quantitative"
+        "text": {
+          "field": "entity"
+        },
+        "color": {
+          "value": "#0b0b0b"
         },
         "y": {
-          "field": "score",
+          "field": "labelY",
           "type": "quantitative"
-        },
-        "text": {
-          "field": "name"
         }
+      }
+    },
+    {
+      "params": [
+        {
+          "name": "hover2",
+          "select": {
+            "type": "point",
+            "on": "pointerover",
+            "nearest": true,
+            "clear": "pointerout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "size": 80,
+        "filled": true
+      },
+      "encoding": {
+        "color": {
+          "field": "entity",
+          "legend": null
+        },
+        "opacity": {
+          "condition": {
+            "param": "hover2",
+            "empty": false,
+            "value": 1
+          },
+          "value": 0
+        },
+        "tooltip": [
+          {
+            "field": "entity",
+            "title": "Country"
+          },
+          {
+            "field": "year",
+            "type": "quantitative",
+            "title": "Year"
+          },
+          {
+            "field": "pm25",
+            "type": "quantitative",
+            "title": "PM2.5 (µg/m³)",
+            "format": ".1f"
+          }
+        ]
       }
     }
   ],
-  "config": {
-    "view": {
-      "stroke": null
+  "transform": [
+    {
+      "filter": "indexof(['VNM','THA','PHL'], datum.code) >= 0 && datum.year >= 2000 && datum.year <= 2024"
+    },
+    {
+      "calculate": "datum.population_weighted_pm25",
+      "as": "pm25"
     }
-  }
+  ]
 }
