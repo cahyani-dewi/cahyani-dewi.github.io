@@ -99,12 +99,7 @@
         "ticks": true,
         "domainColor": "#66605C",
         "tickColor": "#66605C",
-        "tickSize": 5,
-        "labelOverlap": false,
-        "labelFlush": false,
-        "labelFontSize": 14,
-        "labelColor": "#33302E",
-        "labelPadding": 4
+        "tickSize": 6
       }
     }
   },
@@ -239,33 +234,6 @@
               "#1F4A86"
             ]
           }
-        }
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {
-            "t": "Source: IMF"
-          }
-        ]
-      },
-      "mark": {
-        "type": "text",
-        "align": "right",
-        "baseline": "top",
-        "fontSize": 14,
-        "color": "#33302E"
-      },
-      "encoding": {
-        "x": {
-          "value": 490
-        },
-        "y": {
-          "value": 308
-        },
-        "text": {
-          "field": "t"
         }
       }
     }
