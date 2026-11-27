@@ -1,0 +1,309 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Indonesia's monthly exports",
+    "anchor": "start",
+    "subtitle": [
+      "Monthly goods exports, US$ billions (thin line) and 12-month average (bold line)",
+      "Source: BPS through ECO API"
+    ],
+    "fontSize": 15,
+    "subtitleFontSize": 11,
+    "color": "#000000",
+    "subtitleColor": "#52514e",
+    "subtitlePadding": 6,
+    "offset": 12
+  },
+  "height": 380,
+  "width": "container",
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "background": "#ffffff",
+  "view": {
+    "fill": "#ffffff",
+    "strokeOpacity": 0
+  },
+  "config": {
+    "font": "Helvetica, Arial, sans-serif",
+    "axis": {
+      "labelColor": "#52514e",
+      "labelFontSize": 11,
+      "domainColor": "#c3c2b7",
+      "tickColor": "#c3c2b7",
+      "gridColor": "#ecebe7"
+    }
+  },
+  "data": {
+    "url": "https://api.economicsobservatory.com/idn/expo?vega",
+    "format": {
+      "type": "json"
+    }
+  },
+  "transform": [
+    {
+      "calculate": "datum.value / 1000",
+      "as": "bn"
+    },
+    {
+      "window": [
+        {
+          "op": "mean",
+          "field": "bn",
+          "as": "avg12"
+        }
+      ],
+      "sort": [
+        {
+          "field": "date",
+          "order": "ascending"
+        }
+      ],
+      "frame": [
+        -11,
+        0
+      ]
+    },
+    {
+      "window": [
+        {
+          "op": "row_number",
+          "as": "rn"
+        }
+      ],
+      "sort": [
+        {
+          "field": "date",
+          "order": "ascending"
+        }
+      ]
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "color": "#d4dbde",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "title": null,
+          "axis": {
+            "grid": false,
+            "format": "%Y",
+            "tickCount": 9
+          }
+        },
+        "y": {
+          "field": "bn",
+          "type": "quantitative",
+          "title": null,
+          "scale": {
+            "domain": [
+              0,
+              30
+            ]
+          },
+          "axis": {
+            "grid": true,
+            "tickCount": 6,
+            "domain": false,
+            "ticks": false,
+            "labelExpr": "'$' + datum.value + 'bn'"
+          }
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.rn >= 12"
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "color": "#09517e",
+        "strokeWidth": 2.5,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "title": null
+        },
+        "y": {
+          "field": "avg12",
+          "type": "quantitative",
+          "title": null
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "date": "2011-08-01",
+            "y": 21,
+            "label": "2011 commodity boom"
+          },
+          {
+            "date": "2022-06-01",
+            "y": 29.5,
+            "label": "2022 commodity boom"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "fontSize": 10,
+        "color": "#52514e"
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "title": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "title": null
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "rev"
+            }
+          ],
+          "sort": [
+            {
+              "field": "date",
+              "order": "descending"
+            }
+          ]
+        },
+        {
+          "filter": "datum.rev === 1"
+        },
+        {
+          "calculate": "'$' + format(datum.bn, '.1f') + 'bn'",
+          "as": "latest_label"
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "title": null
+        },
+        "y": {
+          "field": "bn",
+          "type": "quantitative",
+          "title": null
+        }
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "point",
+            "filled": true,
+            "size": 60,
+            "color": "#4b4e4d",
+            "stroke": "#ffffff",
+            "strokeWidth": 2,
+            "opacity": 1
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "dx": -8,
+            "dy": -10,
+            "fontSize": 12,
+            "fontWeight": "bold",
+            "color": "#000000"
+          },
+          "encoding": {
+            "text": {
+              "field": "latest_label"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "params": [
+        {
+          "name": "hover",
+          "select": {
+            "type": "point",
+            "on": "pointerover",
+            "nearest": true,
+            "clear": "pointerout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 60,
+        "color": "#303533"
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "title": null
+        },
+        "y": {
+          "field": "bn",
+          "type": "quantitative",
+          "title": null
+        },
+        "opacity": {
+          "condition": {
+            "param": "hover",
+            "empty": false,
+            "value": 1
+          },
+          "value": 0
+        },
+        "tooltip": [
+          {
+            "field": "date",
+            "type": "temporal",
+            "timeUnit": "yearmonth",
+            "title": "Month"
+          },
+          {
+            "field": "bn",
+            "type": "quantitative",
+            "title": "Exports (US$ bn)",
+            "format": ".1f"
+          },
+          {
+            "field": "avg12",
+            "type": "quantitative",
+            "title": "12-month average (US$ bn)",
+            "format": ".1f"
+          }
+        ]
+      }
+    }
+  ]
+}
