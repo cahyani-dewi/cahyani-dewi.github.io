@@ -86,9 +86,17 @@
                 </div>
             </details>
             </div>
-            <p>This section adds a second chart, to practise adding a new section to the page. The figure below has its own id (Location2), which the script uses to know where to draw this chart.</p>
+             <div class="chart-grid">
+        <div class="chart-block">
+            <p>Indonesia GDP Growth Chart made by modifying the original Economic Observatory chart with vegalite.</p>
             <figure id="Location3"></figure>
-        </section>
+        </div>
+        <div class="chart-block">
+            <p>Indonesia Export Chart made by modifying the original Economic Observatory chart with vegalite.</p>
+            <figure id="Location4"></figure>
+        </div>
+    </div>
+</section>
 
         <!-- ===== TASK 3 ===== -->
         <section id="task3" class="task">
@@ -241,15 +249,17 @@
         let figure_2_spec = "https://raw.githubusercontent.com/EconomicsObservatory/ECOvisualisations/refs/heads/main/articles/what-do-the-latest-data-tell-us-about-uk-wage-growth/visualisation/fig1_wage.json";
         vegaEmbed('#Location2', figure_2_spec);
 
-        // Task 2
+        // Task 2 (left and right)
         let figure_3_spec = "https://raw.githubusercontent.com/cahyani-dewi/cahyani-dewi.github.io/refs/heads/main/task%202/chart%203.json";
         vegaEmbed('#Location3', figure_3_spec);
+        let figure_4_spec = "https://raw.githubusercontent.com/cahyani-dewi/cahyani-dewi.github.io/refs/heads/main/task%202/chart%204.json";
+        vegaEmbed('#Location4', figure_4_spec);
 
         // Task 3 (top and bottom)
-        let figure_4_spec = "https://raw.githubusercontent.com/cahyani-dewi/cahyani-dewi.github.io/refs/heads/main/task%203/chart5.json";
-        vegaEmbed('#Location4', figure_4_spec);
-        let figure_5_spec = "https://raw.githubusercontent.com/cahyani-dewi/cahyani-dewi.github.io/refs/heads/main/task%203/chart6.json";
+        let figure_5_spec = "https://raw.githubusercontent.com/cahyani-dewi/cahyani-dewi.github.io/refs/heads/main/task%203/chart5.json";
         vegaEmbed('#Location5', figure_5_spec);
+        let figure_6_spec = "https://raw.githubusercontent.com/cahyani-dewi/cahyani-dewi.github.io/refs/heads/main/task%203/chart6.json";
+        vegaEmbed('#Location6', figure_6_spec);
 
         // Task 4 onwards: uncomment and paste your chart's link, e.g.
         // vegaEmbed('#Location6', "your_chart.json");   // Task 4
