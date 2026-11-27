@@ -150,27 +150,25 @@
                 </figure>
             </div>
 
-            <!-- Replica (Vega-Lite) -->
+            <!-- Replica -->
             <div class="chart-block">
                 <h3>Replication</h3>
                 <p>Recreated in Vega-Lite with manually traced data, matching the FT's dual axis, colours, salmon background and font style.</p>
                 <figure class="ft-chart">
                     <div class="ft-bar"></div>
-                    <div id="Location7"></div>
+                    <div id="Location7a"></div>
                 </figure>
             </div>
 
-            <!-- Improved version: uncomment once the improved spec is ready
+            <!-- Improved version:-->
             <div class="chart-block">
                 <h3>Improvement</h3>
-                <p>Your explanation of 25 words or fewer goes here.</p>
+                <p>Replaced the misleading dual axis with one zero-based scale, labelled lines directly, and retitled to show the renminbi isn't replacing the dollar.</p>
                 <figure class="ft-chart">
                     <div class="ft-bar"></div>
-                    <div id="Location_t4b"></div>
-                    <p class="ft-source">Source: IMF COFER. Data traced from the FT chart</p>
+                    <div id="Location7b"></div>
                 </figure>
-            </div>
-            -->
+            </div>            -->
         </section>
 
         <!-- ===== TASK 5 ===== -->
@@ -293,10 +291,12 @@
         vegaEmbed('#Location6', figure_6_spec);
 
         // Task 4: replica of the FT chart
-        let figure_7_spec = "https://raw.githubusercontent.com/cahyani-dewi/cahyani-dewi.github.io/refs/heads/main/task%204/ft_fx_reserves_replica.json";
+        let figure_7a_spec  = "https://raw.githubusercontent.com/cahyani-dewi/cahyani-dewi.github.io/refs/heads/main/task%204/ft_fx_reserves_replica.json";
+        let figure_7b_spec = "https://raw.githubusercontent.com/cahyani-dewi/cahyani-dewi.github.io/refs/heads/main/task%204/ft_fx_reserves_improved.json";
         document.fonts.load("16px 'Work Sans'").finally(() => {
-            vegaEmbed('#Location7', figure_7_spec, {actions: false});
-            // vegaEmbed('#Location_t4b', "improved_chart_link.json", {actions: false});   // Task 4 improvement
+            vegaEmbed('#Location7a',  figure_7a_spec,  {actions: false});
+            vegaEmbed('#Location7b', figure_7b_spec, {actions: false});
+            //
         });
 
         // Task 5 onwards: uncomment and paste your chart's link, e.g.
