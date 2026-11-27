@@ -156,7 +156,7 @@
                 <p>Recreated in Vega-Lite with manually traced data, matching the FT's dual axis, colours, salmon background and font style.</p>
                 <figure class="ft-chart">
                     <div class="ft-bar"></div>
-                    <div id="Location_t4a"></div>
+                    <div id="Location7"></div>
                     <p class="ft-source">Source: IMF COFER. Data traced from the FT chart</p>
                 </figure>
             </div>
@@ -293,8 +293,8 @@
         let figure_6_spec = "https://raw.githubusercontent.com/cahyani-dewi/cahyani-dewi.github.io/refs/heads/main/task%203/chart6.json";
         vegaEmbed('#Location6', figure_6_spec);
 
-        // Task 4: replica of the FT chart (wait for Work Sans so the chart doesn't fall back to Arial)
-        let figure_t4a_spec = "https://raw.githubusercontent.com/cahyani-dewi/cahyani-dewi.github.io/refs/heads/main/task%204/ft_fx_reserves_replica.json";
+        // Task 4: replica of the FT chart
+        let figure_7_spec = "https://raw.githubusercontent.com/cahyani-dewi/cahyani-dewi.github.io/refs/heads/main/task%204/ft_fx_reserves_replica.json";
         document.fonts.load("16px 'Work Sans'").finally(() => {
             vegaEmbed('#Location_t4a', figure_t4a_spec, {actions: false});
             // vegaEmbed('#Location_t4b', "improved_chart_link.json", {actions: false});   // Task 4 improvement
