@@ -4,8 +4,8 @@
     "text": "Indonesia GDP Growth",
     "anchor": "start",
     "subtitle": [
-      "year-to-date vs same period a year earlier (%)",
-      "Source: BPS through ECO API. Shaded area: COVID-19 contraction, 2020 Q2 – 2021 Q1"
+      "Year-to-date vs same period a year earlier (%)",
+      "Source: BPS via ECO API · Shaded: COVID-19 contraction"
     ],
     "fontSize": 15,
     "subtitleFontSize": 11,
@@ -14,7 +14,7 @@
     "subtitlePadding": 6,
     "offset": 12
   },
-  "height": 280,
+  "height": 340,
   "width": "container",
   "autosize": {
     "type": "fit",
@@ -32,7 +32,11 @@
       "labelFontSize": 11,
       "domainColor": "#c3c2b7",
       "tickColor": "#c3c2b7",
-      "gridColor": "#ecebe7"
+      "gridColor": "#ecebe7",
+      "minExtent": 44
+    },
+    "axisX": {
+      "minExtent": 20
     }
   },
   "data": {
