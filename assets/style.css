@@ -197,3 +197,16 @@ footer {
   max-width: 760px;
   margin: 0 auto;   /* centres the chart */
 }
+
+/* ----- Task 4: original image + FT-style chart frame ----- */
+.original-chart { display: block; max-width: 560px; width: 100%; margin: 0 auto; border: 1px solid var(--line); }
+.ft-chart {
+  background: #FFF1E5;
+  padding: 18px 20px 14px;
+  max-width: 640px;
+  margin: 16px auto 0;
+  font-family: "Work Sans", Helvetica, Arial, sans-serif;
+  color: #33302E;
+}
+.ft-chart .ft-bar { width: 56px; height: 6px; background: #000; margin: 0 0 4px 15px; }
+.ft-chart .ft-source { font-size: 13px; color: #66605C; margin: 6px 0 0 15px; }
