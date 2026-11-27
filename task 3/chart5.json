@@ -11,7 +11,7 @@
     "subtitleColor": "#52514e"
   },
   "config": {
-    "background": "#fcfcfb",
+    "background": "#ffffff",
     "font": "Helvetica, Arial, sans-serif",
     "view": {
       "stroke": null
@@ -19,7 +19,7 @@
     "axis": {
       "labelColor": "#52514e",
       "titleColor": "#52514e",
-      "gridColor": "#e8e7e3",
+      "gridColor": "#ecebe7",
       "domainColor": "#c3c2b7",
       "tickColor": "#c3c2b7",
       "labelFontSize": 11,
@@ -27,8 +27,6 @@
       "titleFontWeight": "normal"
     }
   },
-  "width": 560,
-  "height": 200,
   "data": {
     "url": "https://raw.githubusercontent.com/cahyani-dewi/cahyani-dewi.github.io/refs/heads/main/task%203/vietnamgdp.csv",
     "format": {
@@ -43,8 +41,8 @@
     {
       "mark": {
         "type": "line",
-        "strokeWidth": 2,
-        "color": "#13d1c4"
+        "strokeWidth": 2.5,
+        "color": "#2a78d6"
       },
       "encoding": {
         "x": {
@@ -59,7 +57,8 @@
           },
           "axis": {
             "format": "d",
-            "tickCount": 6
+            "tickCount": 6,
+            "grid": false
           }
         },
         "y": {
@@ -68,10 +67,77 @@
           "title": null,
           "axis": {
             "format": "$,.0f",
-            "tickCount": 4
+            "tickCount": 4,
+            "grid": true,
+            "domain": false,
+            "ticks": false
           }
         }
       }
+    },
+    {
+      "transform": [
+        {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "rev"
+            }
+          ],
+          "sort": [
+            {
+              "field": "year",
+              "order": "descending"
+            }
+          ]
+        },
+        {
+          "filter": "datum.rev === 1"
+        },
+        {
+          "calculate": "format(datum.gdp_per_capita_ppp, '$,.0f')",
+          "as": "latest_label"
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "gdp_per_capita_ppp",
+          "type": "quantitative"
+        }
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "point",
+            "filled": true,
+            "size": 70,
+            "color": "#2a78d6",
+            "stroke": "#ffffff",
+            "strokeWidth": 2,
+            "opacity": 1
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "dx": -8,
+            "dy": -10,
+            "fontSize": 12,
+            "fontWeight": "bold",
+            "color": "#000000"
+          },
+          "encoding": {
+            "text": {
+              "field": "latest_label"
+            }
+          }
+        }
+      ]
     },
     {
       "params": [
@@ -89,7 +155,7 @@
         "type": "point",
         "size": 80,
         "filled": true,
-        "color": "#a9b5b1"
+        "color": "#2a78d6"
       },
       "encoding": {
         "x": {
@@ -123,5 +189,15 @@
         ]
       }
     }
-  ]
+  ],
+  "width": "container",
+  "height": 340,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "view": {
+    "fill": "#ffffff",
+    "stroke": null
+  }
 }
