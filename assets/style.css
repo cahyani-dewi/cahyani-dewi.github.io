@@ -183,3 +183,9 @@ footer {
 
 /* ----- Side-by-side charts, each with its own explanation ----- */
 .chart-grid .chart-block { flex: 1 1 380px; min-width: 0; margin-top: 0; padding-top: 0; border-top: none; }
+
+/* Keep the chart from stretching on wide screens */
+#Location2 {
+  max-width: 760px;
+  margin: 0 auto;   /* centres the chart */
+}
