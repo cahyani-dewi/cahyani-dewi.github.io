@@ -1,129 +1,127 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Twelve years in school, eight years' worth of learning",
+    "text": "Vietnam's economy more than tripled",
+    "subtitle": [
+      "GDP per capita (PPP, constant 2021 international $), 2000–2024",
+      "Source: Our World in Data (World Bank)"
+    ],
     "anchor": "start",
-    "subtitle": "Expected years of school vs learning-adjusted years, latest available year. Source: World Bank Human Capital Index",
+    "fontSize": 16,
     "subtitleColor": "#52514e"
   },
-  "width": 600,
-  "height": { "step": 28 },
-  "data": {
-    "url": "https://api.worldbank.org/v2/country/SGP;VNM;MYS;THA;BRN;IDN;PHL;KHM;LAO;MMR;JPN;GBR;USA;IND/indicator/HD.HCI.EYRS?format=json&mrnev=1&per_page=100",
-    "format": { "type": "json", "property": "1" }
-  },
-  "transform": [
-    { "filter": "isValid(datum.value)" },
-    { "calculate": "datum.value", "as": "school" },
-    { "calculate": "datum.country.value", "as": "name" },
-    { "calculate": "datum.date", "as": "year" },
-    {
-      "lookup": "countryiso3code",
-      "from": {
-        "data": {
-          "url": "https://api.worldbank.org/v2/country/SGP;VNM;MYS;THA;BRN;IDN;PHL;KHM;LAO;MMR;JPN;GBR;USA;IND/indicator/HD.HCI.LAYS?format=json&mrnev=1&per_page=100",
-          "format": { "type": "json", "property": "1" }
-        },
-        "key": "countryiso3code",
-        "fields": ["value"]
-      },
-      "as": ["learning"]
+  "config": {
+    "background": "#fcfcfb",
+    "font": "Helvetica, Arial, sans-serif",
+    "view": {
+      "stroke": null
     },
-    { "filter": "isValid(datum.school) && isValid(datum.learning)" },
-    { "calculate": "datum.school - datum.learning", "as": "gap" },
-    { "calculate": "'−' + format(datum.gap, '.1f') + ' yrs'", "as": "gap_label" }
-  ],
-  "encoding": {
-    "y": {
-      "field": "name",
-      "type": "nominal",
-      "sort": { "field": "learning", "order": "descending" },
-      "axis": {
-        "title": null,
-        "domain": false,
-        "ticks": false,
-        "labelPadding": 8,
-        "labelColor": "#0b0b0b",
-        "labelFontSize": 12,
-        "labelFontWeight": {
-          "condition": { "test": "datum.value === 'Indonesia'", "value": "bold" },
-          "value": "normal"
-        }
+    "axis": {
+      "labelColor": "#52514e",
+      "titleColor": "#52514e",
+      "gridColor": "#e8e7e3",
+      "domainColor": "#c3c2b7",
+      "tickColor": "#c3c2b7",
+      "labelFontSize": 11,
+      "titleFontSize": 11,
+      "titleFontWeight": "normal"
+    }
+  },
+  "width": 560,
+  "height": 200,
+  "data": {
+    "url": "https://raw.githubusercontent.com/cahyani-dewi/cahyani-dewi.github.io/refs/heads/main/task%203/vietnamgdp.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "year": "number",
+        "gdp_per_capita_ppp": "number"
       }
     }
   },
   "layer": [
     {
-      "mark": { "type": "rule", "strokeWidth": 2, "color": "#c3c2b7" },
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2,
+        "color": "#13d1c4"
+      },
       "encoding": {
         "x": {
-          "field": "learning",
+          "field": "year",
           "type": "quantitative",
-          "scale": { "domain": [0, 15] },
+          "title": null,
+          "scale": {
+            "domain": [
+              2000,
+              2024
+            ]
+          },
           "axis": {
-            "title": "Years",
-            "titleColor": "#52514e",
-            "titleFontWeight": "normal",
-            "labelColor": "#52514e",
-            "gridColor": "#ecebe8",
-            "domain": false,
-            "ticks": false,
-            "values": [0, 3, 6, 9, 12, 15]
+            "format": "d",
+            "tickCount": 6
           }
         },
-        "x2": { "field": "school" }
+        "y": {
+          "field": "gdp_per_capita_ppp",
+          "type": "quantitative",
+          "title": null,
+          "axis": {
+            "format": "$,.0f",
+            "tickCount": 4
+          }
+        }
       }
     },
     {
-      "transform": [
-        { "fold": ["school", "learning"], "as": ["measure", "years"] },
-        {
-          "calculate": "datum.measure === 'school' ? 'Years in school' : 'Years of actual learning'",
-          "as": "measure_label"
-        }
-      ],
       "params": [
         {
-          "name": "hover",
-          "select": { "type": "point", "on": "pointerover", "fields": ["name"], "clear": "pointerout" }
+          "name": "hover1",
+          "select": {
+            "type": "point",
+            "on": "pointerover",
+            "nearest": true,
+            "clear": "pointerout"
+          }
         }
       ],
-      "mark": { "type": "point", "filled": true, "size": 110, "stroke": "#fcfcfb", "strokeWidth": 2, "opacity": 1 },
+      "mark": {
+        "type": "point",
+        "size": 80,
+        "filled": true,
+        "color": "#a9b5b1"
+      },
       "encoding": {
-        "x": { "field": "years", "type": "quantitative" },
-        "color": {
-          "field": "measure_label",
-          "type": "nominal",
-          "scale": {
-            "domain": ["Years in school", "Years of actual learning"],
-            "range": ["#2a78d6", "#eb6834"]
-          },
-          "legend": { "title": null, "orient": "top", "direction": "horizontal", "labelColor": "#52514e" }
+        "x": {
+          "field": "year",
+          "type": "quantitative"
         },
-        "size": {
-          "condition": { "param": "hover", "empty": false, "value": 170 },
-          "value": 110
+        "y": {
+          "field": "gdp_per_capita_ppp",
+          "type": "quantitative"
+        },
+        "opacity": {
+          "condition": {
+            "param": "hover1",
+            "empty": false,
+            "value": 1
+          },
+          "value": 0
         },
         "tooltip": [
-          { "field": "name", "title": "Country" },
-          { "field": "year", "title": "Year" },
-          { "field": "school", "type": "quantitative", "title": "Years in school", "format": ".1f" },
-          { "field": "learning", "type": "quantitative", "title": "Years of learning", "format": ".1f" },
-          { "field": "gap", "type": "quantitative", "title": "Years lost", "format": ".1f" }
+          {
+            "field": "year",
+            "type": "quantitative",
+            "title": "Year"
+          },
+          {
+            "field": "gdp_per_capita_ppp",
+            "type": "quantitative",
+            "title": "GDP per capita",
+            "format": "$,.0f"
+          }
         ]
       }
-    },
-    {
-      "mark": { "type": "text", "align": "left", "dx": 10, "fontSize": 11, "color": "#52514e" },
-      "encoding": {
-        "x": { "field": "school", "type": "quantitative" },
-        "text": { "field": "gap_label" },
-        "fontWeight": {
-          "condition": { "test": "datum.name === 'Indonesia'", "value": "bold" },
-          "value": "normal"
-        }
-      }
     }
-  ],
-  "config": { "view": { "stroke": null } }
+  ]
 }
