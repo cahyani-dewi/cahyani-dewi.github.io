@@ -1,0 +1,343 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Improved version of the FT FX reserves chart: one shared, zero-based axis, direct labels, gap annotation. Data traced from the FT chart; source IMF COFER.",
+  "width": 460,
+  "height": 280,
+  "background": "#FFF1E5",
+  "padding": {
+    "left": 15,
+    "right": 15,
+    "top": 15,
+    "bottom": 15
+  },
+  "title": {
+    "text": [
+      "The dollar's share is slipping, but the renminbi",
+      "is nowhere near replacing it"
+    ],
+    "subtitle": "Currency share of allocated foreign currency reserves (%)",
+    "anchor": "start",
+    "fontSize": 22,
+    "fontWeight": 400,
+    "color": "#33302E",
+    "subtitleFontSize": 16,
+    "subtitleColor": "#66605C",
+    "subtitlePadding": 18,
+    "offset": 20
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/cahyani-dewi/cahyani-dewi.github.io/refs/heads/main/task%204/fx_reserves.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "date": "date",
+        "usd": "number",
+        "rmb": "number"
+      }
+    }
+  },
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "title": null,
+      "scale": {
+        "domain": [
+          {
+            "year": 2000,
+            "month": 1,
+            "date": 1
+          },
+          {
+            "year": 2024,
+            "month": 1,
+            "date": 1
+          }
+        ]
+      },
+      "axis": {
+        "values": [
+          {
+            "year": 2000,
+            "month": 1,
+            "date": 1
+          },
+          {
+            "year": 2004,
+            "month": 1,
+            "date": 1
+          },
+          {
+            "year": 2008,
+            "month": 1,
+            "date": 1
+          },
+          {
+            "year": 2012,
+            "month": 1,
+            "date": 1
+          },
+          {
+            "year": 2016,
+            "month": 1,
+            "date": 1
+          },
+          {
+            "year": 2020,
+            "month": 1,
+            "date": 1
+          },
+          {
+            "year": 2024,
+            "month": 1,
+            "date": 1
+          }
+        ],
+        "format": "%Y",
+        "labelOverlap": false,
+        "labelFlush": false,
+        "grid": false,
+        "domain": true,
+        "ticks": true,
+        "domainColor": "#33302E",
+        "tickColor": "#66605C",
+        "tickSize": 5,
+        "labelFontSize": 14,
+        "labelColor": "#33302E",
+        "labelPadding": 4
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3.5,
+        "color": "#9DCAE6"
+      },
+      "encoding": {
+        "y": {
+          "field": "usd",
+          "type": "quantitative",
+          "title": null,
+          "scale": {
+            "domain": [
+              0,
+              80
+            ],
+            "nice": false
+          },
+          "axis": {
+            "values": [
+              0,
+              20,
+              40,
+              60,
+              80
+            ],
+            "grid": true
+          }
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "isValid(datum.rmb)"
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3.5,
+        "color": "#1F4A86"
+      },
+      "encoding": {
+        "y": {
+          "field": "rmb",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "year(datum.date) == 2023"
+        },
+        {
+          "calculate": "'US dollar ' + format(datum.usd, '.0f') + '%'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "fontSize": 14,
+        "fontWeight": 500,
+        "color": "#3D7FB0"
+      },
+      "encoding": {
+        "y": {
+          "field": "usd",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "year(datum.date) == 2023"
+        },
+        {
+          "calculate": "'Renminbi ' + format(datum.rmb, '.1f') + '%'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "fontSize": 14,
+        "fontWeight": 500,
+        "color": "#1F4A86"
+      },
+      "encoding": {
+        "y": {
+          "field": "rmb",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "year(datum.date) == 2019 && month(datum.date) == 0"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "color": "#66605C",
+        "strokeWidth": 1,
+        "strokeDash": [
+          3,
+          3
+        ]
+      },
+      "encoding": {
+        "y": {
+          "field": "rmb",
+          "type": "quantitative"
+        },
+        "y2": {
+          "field": "usd"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "year(datum.date) == 2019 && month(datum.date) == 0"
+        },
+        {
+          "calculate": "(datum.usd + datum.rmb) / 2",
+          "as": "mid"
+        },
+        {
+          "calculate": "'Gap: ~' + format(datum.usd - datum.rmb, '.0f') + ' points'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -8,
+        "fontSize": 13,
+        "color": "#66605C"
+      },
+      "encoding": {
+        "y": {
+          "field": "mid",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "year(datum.date) == 2000 && month(datum.date) == 0"
+        },
+        {
+          "calculate": "'Down ~13 points since 2000'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dy": -14,
+        "fontSize": 13,
+        "color": "#66605C"
+      },
+      "encoding": {
+        "y": {
+          "field": "usd",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "t": "Source: IMF"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "top",
+        "fontSize": 14,
+        "color": "#33302E"
+      },
+      "encoding": {
+        "x": {
+          "value": 460
+        },
+        "y": {
+          "value": 310
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ],
+  "config": {
+    "font": "Work Sans, Metric, Helvetica, Arial, sans-serif",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 14,
+      "labelColor": "#66605C",
+      "labelPadding": 6,
+      "domain": false,
+      "ticks": false,
+      "gridColor": "#D9CCC1",
+      "gridWidth": 1
+    }
+  }
+}
