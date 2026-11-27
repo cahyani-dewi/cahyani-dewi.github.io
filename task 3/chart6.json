@@ -11,7 +11,7 @@
     "subtitleColor": "#52514e"
   },
   "config": {
-    "background": "#fcfcfb",
+    "background": "#ffffff",
     "font": "Helvetica, Arial, sans-serif",
     "view": {
       "stroke": null
@@ -19,7 +19,7 @@
     "axis": {
       "labelColor": "#52514e",
       "titleColor": "#52514e",
-      "gridColor": "#e8e7e3",
+      "gridColor": "#ecebe7",
       "domainColor": "#c3c2b7",
       "tickColor": "#c3c2b7",
       "labelFontSize": 11,
@@ -27,8 +27,6 @@
       "titleFontWeight": "normal"
     }
   },
-  "width": 560,
-  "height": 200,
   "data": {
     "url": "https://ourworldindata.org/grapher/outdoor-air-pollution-exposure.csv?v=1&csvType=full&useColumnShortNames=true",
     "format": {
@@ -52,7 +50,8 @@
       },
       "axis": {
         "format": "d",
-        "tickCount": 6
+        "tickCount": 6,
+        "grid": false
       }
     },
     "y": {
@@ -66,7 +65,10 @@
         ]
       },
       "axis": {
-        "tickCount": 4
+        "tickCount": 4,
+        "grid": true,
+        "domain": false,
+        "ticks": false
       }
     }
   },
@@ -92,12 +94,6 @@
         "y": {
           "field": "who",
           "type": "quantitative"
-        },
-        "x": {
-          "value": 0
-        },
-        "x2": {
-          "value": 560
         }
       }
     },
@@ -132,9 +128,14 @@
       }
     },
     {
+      "transform": [
+        {
+          "filter": "datum.entity !== 'Vietnam'"
+        }
+      ],
       "mark": {
         "type": "line",
-        "strokeWidth": 2
+        "strokeWidth": 1.5
       },
       "encoding": {
         "detail": {
@@ -144,28 +145,88 @@
           "field": "entity",
           "scale": {
             "domain": [
-              "Vietnam",
               "Thailand",
               "Philippines"
             ],
             "range": [
-              "#2a78d6",
-              "#eb6834",
-              "#1baf7a"
+              "#8f8e88",
+              "#b5b4ae"
             ]
           },
-          "legend": {
-            "orient": "top",
-            "direction": "horizontal",
-            "symbolType": "stroke",
-            "symbolStrokeWidth": 2,
-            "labelColor": "#52514e",
-            "labelFontSize": 11,
-            "offset": 4
-          },
-          "title": null
+          "legend": null
         }
       }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.entity === 'Vietnam'"
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.75,
+        "color": "#2a78d6"
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": 2007,
+            "y": 29.6,
+            "label": "Levels off from 2007"
+          }
+        ]
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "rule",
+            "color": "#8a8983",
+            "strokeWidth": 1,
+            "strokeDash": [
+              2,
+              2
+            ]
+          },
+          "encoding": {
+            "x": {
+              "field": "year",
+              "type": "quantitative"
+            },
+            "y": {
+              "datum": 27.5
+            },
+            "y2": {
+              "datum": 29.6
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 4,
+            "baseline": "middle",
+            "fontSize": 10,
+            "color": "#52514e"
+          },
+          "encoding": {
+            "x": {
+              "field": "year",
+              "type": "quantitative"
+            },
+            "y": {
+              "field": "y",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "label"
+            }
+          }
+        }
+      ]
     },
     {
       "transform": [
@@ -185,7 +246,7 @@
           "filter": "datum.year === datum.last"
         },
         {
-          "calculate": "datum.pm25 + (datum.entity === 'Thailand' ? 1 : datum.entity === 'Philippines' ? -1 : 0)",
+          "calculate": "datum.pm25 + (datum.entity === 'Vietnam' ? 0.8 : datum.entity === 'Thailand' ? 0.6 : -1.0)",
           "as": "labelY"
         }
       ],
@@ -200,7 +261,11 @@
           "field": "entity"
         },
         "color": {
-          "value": "#0b0b0b"
+          "condition": {
+            "test": "datum.entity === 'Vietnam'",
+            "value": "#000000"
+          },
+          "value": "#6b6a65"
         },
         "y": {
           "field": "labelY",
@@ -227,8 +292,11 @@
       },
       "encoding": {
         "color": {
-          "field": "entity",
-          "legend": null
+          "condition": {
+            "test": "datum.entity === 'Vietnam'",
+            "value": "#2a78d6"
+          },
+          "value": "#8f8e88"
         },
         "opacity": {
           "condition": {
@@ -266,5 +334,15 @@
       "calculate": "datum.population_weighted_pm25",
       "as": "pm25"
     }
-  ]
+  ],
+  "width": "container",
+  "height": 340,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "view": {
+    "fill": "#ffffff",
+    "stroke": null
+  }
 }
