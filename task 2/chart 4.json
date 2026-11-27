@@ -4,8 +4,8 @@
     "text": "Indonesia's monthly exports",
     "anchor": "start",
     "subtitle": [
-      "Monthly goods exports, US$ billions (thin line) and 12-month average (bold line)",
-      "Source: BPS through ECO API"
+      "US$ bn: monthly (thin) and 12-month average (bold)",
+      "Source: BPS via ECO API"
     ],
     "fontSize": 15,
     "subtitleFontSize": 11,
@@ -14,7 +14,7 @@
     "subtitlePadding": 6,
     "offset": 12
   },
-  "height": 380,
+  "height": 340,
   "width": "container",
   "autosize": {
     "type": "fit",
@@ -32,7 +32,11 @@
       "labelFontSize": 11,
       "domainColor": "#c3c2b7",
       "tickColor": "#c3c2b7",
-      "gridColor": "#ecebe7"
+      "gridColor": "#ecebe7",
+      "minExtent": 44
+    },
+    "axisX": {
+      "minExtent": 20
     }
   },
   "data": {
