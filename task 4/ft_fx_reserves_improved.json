@@ -217,7 +217,7 @@
     {
       "transform": [
         {
-          "filter": "year(datum.date) == 2019 && month(datum.date) == 0"
+          "filter": "year(datum.date) == 2023"
         }
       ],
       "mark": {
@@ -242,14 +242,14 @@
     {
       "transform": [
         {
-          "filter": "year(datum.date) == 2019 && month(datum.date) == 0"
+          "filter": "year(datum.date) == 2023"
         },
         {
           "calculate": "(datum.usd + datum.rmb) / 2",
           "as": "mid"
         },
         {
-          "calculate": "'Gap: ~' + format(datum.usd - datum.rmb, '.0f') + ' points'",
+          "calculate": "'Gap in 2023: ~' + format(datum.usd - datum.rmb, '.0f') + ' points'",
           "as": "label"
         }
       ],
