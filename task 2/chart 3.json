@@ -1,20 +1,341 @@
- {
-  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text":"Real GDP Per Capita",
-    "subtitle": ["Current International USD, PPP", "Source: World Bank"]},
-
-  "width": 400,
-  "height": 300,
- 
-  "data": {"url": "https://raw.githubusercontent.com/EconomicsObservatory/courses/main/1/s1_example_data/chart2_GDP_pc_6_countries.csv"},
- 
-  "mark": "line",
- 
-  "encoding": {
-    "x": {"field": "Year", "type": "temporal", "title": null},
-    "y": {"field": "GDP pc", "type": "quantitative", "title": null},
-    "color": {"field": "Country Name", "type": "nominal"}
-  }
+    "text": "Indonesia GDP Growth",
+    "anchor": "start",
+    "subtitle": [
+      "year-to-date vs same period a year earlier (%)",
+      "Source: BPS through ECO API. Shaded area: COVID-19 contraction, 2020 Q2 – 2021 Q1"
+    ],
+    "fontSize": 15,
+    "subtitleFontSize": 11,
+    "color": "#000000",
+    "subtitleColor": "#52514e",
+    "subtitlePadding": 6,
+    "offset": 12
+  },
+  "height": 280,
+  "width": "container",
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "background": "#ffffff",
+  "view": {
+    "fill": "#ffffff",
+    "strokeOpacity": 0
+  },
+  "config": {
+    "font": "Helvetica, Arial, sans-serif",
+    "axis": {
+      "labelColor": "#52514e",
+      "labelFontSize": 11,
+      "domainColor": "#c3c2b7",
+      "tickColor": "#c3c2b7",
+      "gridColor": "#ecebe7"
+    }
+  },
+  "data": {
+    "url": "https://api.economicsobservatory.com/idn/grow?vega",
+    "format": {
+      "type": "json"
+    }
+  },
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {
+            "start": "2020-04-01",
+            "end": "2021-04-01",
+            "label": "COVID-19 contraction"
+          }
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "color": "#e8e7e3",
+        "opacity": 0.8
+      },
+      "encoding": {
+        "x": {
+          "field": "start",
+          "type": "temporal",
+          "title": null
+        },
+        "x2": {
+          "field": "end"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "mid": "2020-10-01",
+            "label": "COVID-19"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "top",
+        "dy": 4,
+        "fontSize": 10,
+        "color": "#52514e"
+      },
+      "encoding": {
+        "x": {
+          "field": "mid",
+          "type": "temporal",
+          "title": null
+        },
+        "y": {
+          "value": 0
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "y": 0
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#8a8983",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -3,
+              7
+            ]
+          },
+          "title": null
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "y": 5,
+            "label": "5%"
+          }
+        ]
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "rule",
+            "color": "#8a8983",
+            "strokeWidth": 1,
+            "strokeDash": [
+              4,
+              4
+            ]
+          },
+          "encoding": {
+            "y": {
+              "field": "y",
+              "type": "quantitative",
+              "title": null
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 4,
+            "dy": -7,
+            "fontSize": 10,
+            "color": "#52514e"
+          },
+          "encoding": {
+            "x": {
+              "value": 0
+            },
+            "y": {
+              "field": "y",
+              "type": "quantitative",
+              "title": null
+            },
+            "text": {
+              "field": "label"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "line",
+        "color": "#2a78d6",
+        "strokeWidth": 2.5,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "axis": {
+            "title": null,
+            "grid": false,
+            "format": "%Y",
+            "tickCount": 8
+          },
+          "title": null
+        },
+        "y": {
+          "field": "value",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -3,
+              7
+            ]
+          },
+          "axis": {
+            "title": null,
+            "grid": true,
+            "tickCount": 6,
+            "domain": false,
+            "ticks": false,
+            "labelExpr": "datum.value + '%'"
+          },
+          "title": null
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "rn"
+            }
+          ],
+          "sort": [
+            {
+              "field": "date",
+              "order": "descending"
+            }
+          ]
+        },
+        {
+          "filter": "datum.rn === 1"
+        },
+        {
+          "calculate": "format(datum.value, '.1f') + '%'",
+          "as": "latest_label"
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "point",
+            "filled": true,
+            "size": 70,
+            "color": "#2a78d6",
+            "stroke": "#ffffff",
+            "strokeWidth": 2,
+            "opacity": 1
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "center",
+            "dy": -12,
+            "fontSize": 12,
+            "fontWeight": "bold",
+            "color": "#000000"
+          },
+          "encoding": {
+            "text": {
+              "field": "latest_label"
+            }
+          }
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "title": null
+        },
+        "y": {
+          "field": "value",
+          "type": "quantitative",
+          "title": null
+        }
+      }
+    },
+    {
+      "params": [
+        {
+          "name": "hover",
+          "select": {
+            "type": "point",
+            "on": "pointerover",
+            "nearest": true,
+            "clear": "pointerout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 70,
+        "color": "#2a78d6"
+      },
+      "encoding": {
+        "opacity": {
+          "condition": {
+            "param": "hover",
+            "empty": false,
+            "value": 1
+          },
+          "value": 0
+        },
+        "tooltip": [
+          {
+            "field": "date",
+            "type": "temporal",
+            "timeUnit": "yearquarter",
+            "title": "Quarter"
+          },
+          {
+            "field": "value",
+            "type": "quantitative",
+            "title": "Growth (%)",
+            "format": ".1f"
+          }
+        ],
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "title": null
+        },
+        "y": {
+          "field": "value",
+          "type": "quantitative",
+          "title": null
+        }
+      }
+    }
+  ]
 }
