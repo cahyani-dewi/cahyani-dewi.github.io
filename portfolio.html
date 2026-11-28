@@ -197,7 +197,7 @@
 
             <!-- API chart -->
             <div class="chart-block">
-                <h3>API task: the digital divide by income group</h3>
+                <h3>Internet usage divide by income group</h3>
                 <p>This chart loads its data live from the World Bank Data360 API each time the page opens. Internet use has risen everywhere since 2005, but fewer than one in four people in low-income countries are online, against more than nine in ten in high-income countries.</p>
                 <figure id="Location8"></figure>
             </div>
@@ -214,9 +214,9 @@
                 <h4>b. Elements needed to call the data</h4>
                 <table>
                     <tr><th>Parameter</th><th>Value used</th><th>What it does</th></tr>
-                    <tr><td><code>DATABASE_ID</code> (required)</td><td><code>WB_WDI</code></td><td>The source database, here the World Development Indicators.</td></tr>
-                    <tr><td><code>INDICATOR</code></td><td><code>WB_WDI_IT_NET_USER_ZS</code></td><td>The indicator code for <em>Individuals using the internet (% of population)</em>. It is the database ID plus the classic WDI code <code>IT.NET.USER.ZS</code>, with the dots replaced by underscores.</td></tr>
-                    <tr><td><code>REF_AREA</code></td><td><code>LIC,LMC,UMC,HIC</code></td><td>The areas to return, separated by commas. Here these are the four World Bank income groups: low, lower-middle, upper-middle and high income. Country codes such as <code>IDN</code> work the same way.</td></tr>
+                    <tr><td><code>DATABASE_ID</code></td><td><code>WB_WDI</code></td><td>World Development Indicators.</td></tr>
+                    <tr><td><code>INDICATOR</code></td><td><code>WB_WDI_IT_NET_USER_ZS</code></td><td>The indicator code for <em>Individuals using the internet (% of population)</em>. It is the database ID plus the WDI code <code>IT.NET.USER.ZS</code>, with the dots replaced by underscores.</td></tr>
+                    <tr><td><code>REF_AREA</code></td><td><code>LIC,LMC,UMC,HIC</code></td><td>The areas to return, separated by commas. These are the four World Bank income groups: low, lower-middle, upper-middle and high income.</td></tr>
                 </table>
 
                 <h4>c. Data returned</h4>
