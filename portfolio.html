@@ -265,8 +265,15 @@
 
                 <p class="api-note"><strong>Why Data360?</strong> The older World Bank API (<code>api.worldbank.org/v2</code>) blocks requests made from web pages (it sends no CORS header), so a chart on this site can't load it. Data360 allows them.</p>
             </div>
-        </section>
-
+           
+        <!-- Scraper chart -->
+            <div class="chart-block">
+            <h3>Scraper task: cancer incidence vs mortality</h3>
+            <p>Data scraped from Wikipedia with a <a href="YOUR_COLAB_LINK" target="_blank">Google Colab notebook</a>, cleaned and exported in tidy (long) format.</p>
+            <div class="cancer-chart"><div id="Location8b"></div></div>
+            <p class="chart-note">Scraped GLOBOCAN 2022 cancer tables from Wikipedia; multi-level headers and footnotes needed parsing. Tidied into long format; Vega-Lite pivots data, filtering NMSC and sex.</p>
+            </div>
+            </section>
         <!-- ===== TASK 6 ===== -->
         <section id="task6" class="task placeholder">
             <div class="task-head">
@@ -377,9 +384,11 @@
             //
         });
 
-        // Task 5: API chart (data loads live from the World Bank Data360 API)
-        let figure_8_spec = "https://raw.githubusercontent.com/cahyani-dewi/cahyani-dewi.github.io/refs/heads/main/task%205/internet_users_live.json";
-        vegaEmbed('#Location8', figure_8_spec, {actions: false});
+        // Task 5: API chart (data loads live from the World Bank Data360 API) and scrape chart
+        let figure_8a_spec = "https://raw.githubusercontent.com/cahyani-dewi/cahyani-dewi.github.io/refs/heads/main/task%205/internet_users_live.json";
+        vegaEmbed('#Location8', figure_8a_spec, {actions: false});
+        let figure_8b_spec = "https://raw.githubusercontent.com/cahyani-dewi/cahyani-dewi.github.io/refs/heads/main/task%205/cancer_rate_scrape.json";
+        vegaEmbed('#Location8b', figure_8b_spec, {actions: false});
 
         // Task 6 onwards: uncomment and paste your chart's link, e.g.
         // vegaEmbed('#Location10', "your_chart.json");  // Task 6
