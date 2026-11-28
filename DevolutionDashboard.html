@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cahyani Dewi | UK Devolution Dashboard</title>
+
+    <!-- Fonts + shared site style -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;600;700&family=Source+Serif+4:wght@400;600&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css">
+
+    <!-- Vega libraries for the charts -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@6.4.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@6.4.3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@7.3.0"></script>
+
+    <!-- Dashboard-only additions (everything else comes from assets/style.css) -->
+    <style>
+        .dash-intro { max-width: 820px; margin: 0 auto 8px; text-align: center; }
+
+        /* shared legend for all six charts */
+        .dash-legend {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px;
+            margin: 18px 0 6px; font-family: 'Inter', sans-serif; font-size: 13px;
+        }
+        .dash-legend span { display: inline-flex; align-items: center; gap: 7px; }
+        .dash-legend i { width: 20px; border-top: 3px solid; display: inline-block; }
+        .dash-legend i.dash { border-top-style: dashed; }
+
+        /* 3 x 2 grid */
+        .dash-grid {
+            display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px; margin-top: 18px;
+        }
+        @media (max-width: 1000px) { .dash-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (max-width: 640px)  { .dash-grid { grid-template-columns: 1fr; } }
+
+        .dash-card {
+            border: 1px solid #e3e8ef; border-radius: 12px; padding: 14px 14px 8px; background: #fff;
+        }
+        .dash-card h3 { margin: 0; font-size: 1.15rem; }
+        .dash-card .unit {
+            margin: 2px 0 8px; font-family: 'Inter', sans-serif; font-size: 12px; color: #6b7280;
+        }
+        .dash-card .vis { width: 100%; }
+
+        .dash-meta { font-family: 'Inter', sans-serif; font-size: 13px; color: #6b7280; margin-top: 18px; }
+        .dash-meta a { color: var(--accent, #3a6ea5); }
+        .back-link { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--accent, #3a6ea5); text-decoration: none; }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <a class="brand" href="index.html">Cahyani Dewi</a>
+        <div class="links">
+            <a href="index.html">Home</a>
+            <a href="project.html">Project</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="about.html">About</a>
+        </div>
+    </nav>
+
+    <!-- ===== COLOURED BANNER (full width) ===== -->
+    <header class="banner">
+        <h1>UK Devolution Dashboard</h1>
+        <p>Portfolio Task 6: six time series on England's mayoral combined authorities.</p>
+    </header>
+
+    <main class="content">
+
+        <a class="back-link" href="portfolio.html#task6">&larr; Back to Portfolio</a>
+
+        <section class="task">
+            <div class="task-head">
+                <span class="task-label">Portfolio Task 6</span>
+                <h2>Has devolution helped England's city regions catch up with London?</h2>
+                <details class="brief">
+                    <summary>View Task Brief</summary>
+                    <div class="brief-body">
+                        <p><strong>Objective:</strong> Locate sub-regional UK data and make a dashboard of 6 charts to explain devolution in some way. Use a loop to batch download six series as JSON files, save them to GitHub and use them as raw files to supply the charts.</p>
+                    </div>
+                </details>
+            </div>
+
+            <p class="dash-intro">England's first metro mayors were elected in 2017, with new powers over transport, skills and growth.
+            These charts compare six established mayoral combined authorities with Greater London (dashed grey) on the economy, work,
+            health, the environment and ageing. Hover over a chart to see every area's value for that year.</p>
+
+            <div class="dash-legend" id="legend"></div>
+
+            <div class="dash-grid" id="grid"></div>
+
+            <div class="dash-meta">
+                <p><strong>Data:</strong> PP434 strategic-authority datasets compiled from ONS (regional GVA, ASHE, Annual Population Survey,
+                mid-year population estimates, life expectancy) and DESNZ (local emissions). Each series was downloaded in a Python loop,
+                reshaped to tidy format and saved as JSON in this site's repository.</p>
+                <p><strong>Analysis notebook:</strong> <a href="PASTE_YOUR_PUBLIC_COLAB_LINK_HERE" target="_blank" rel="noopener">Google Colab notebook</a></p>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>© 2026 Cahyani Dewi · PP434 Automated Data for Public Policy, LSE</p>
+    </footer>
+
+    <!-- ===== CHARTS ===== -->
+    <script>
+        // ---- Change this if your repo, branch or folder differ ----
+        const RAW_BASE = "https://raw.githubusercontent.com/cahyani-dewi/cahyani-dewi.github.io/refs/heads/main/data/devolution/";
+
+        const CHARTS = [
+            { file: "gva_per_head",           title: "Economic output (GVA) per head",    unit: "£ per resident, current prices", fmt: ",.0f" },
+            { file: "pay_fulltime",           title: "Median full-time pay",              unit: "£ a year",                       fmt: ",.0f" },
+            { file: "employment_rate",        title: "Employment rate, age 16–64",        unit: "%",                              fmt: ".1f"  },
+            { file: "life_expectancy_female", title: "Female life expectancy at birth",   unit: "years (3-year average, plotted at end year)", fmt: ".1f" },
+            { file: "emissions_per_head",     title: "Greenhouse gas emissions per head", unit: "tonnes CO2e per resident",       fmt: ".1f"  },
+            { file: "old_age_dependency",     title: "Old-age dependency ratio",          unit: "people 65+ per 100 aged 16–64",  fmt: ".1f"  }
+        ];
+
+        // Colour follows the area, in a fixed order. London = grey dashed benchmark.
+        const AREAS  = ["Greater Manchester", "West Midlands", "Liverpool City Region",
+                        "South Yorkshire", "West Yorkshire", "North East", "Greater London"];
+        const COLOURS = ["#257de0", "#f47230", "#00b894", "#f2a600", "#ee7fac", "#6a4ce2", "#8a8a8a"];
+
+        // Shared legend
+        document.getElementById("legend").innerHTML = AREAS.map((a, i) =>
+            `<span><i class="${a === 'Greater London' ? 'dash' : ''}" style="border-color:${COLOURS[i]}"></i>${a}</span>`
+        ).join("");
+
+        function spec(c) {
+            return {
+                "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+                "width": "container",
+                "height": 220,
+                "background": "transparent",
+                // Each JSON holds metadata plus a "data" list covering every strategic authority
+                "data": { "url": RAW_BASE + c.file + ".json", "format": { "type": "json", "property": "data" } },
+                // keep only the areas this dashboard compares
+                "transform": [{ "filter": { "field": "name", "oneOf": AREAS } }],
+                "encoding": {
+                    "x": { "field": "year", "type": "quantitative",
+                           "axis": { "title": null, "format": "d", "tickCount": 5, "grid": false } }
+                },
+                "layer": [
+                    {
+                        "mark": { "type": "line", "strokeWidth": 2, "interpolate": "monotone" },
+                        "encoding": {
+                            "y": { "field": "value", "type": "quantitative", "scale": { "zero": false },
+                                   "axis": { "title": null, "tickCount": 5, "format": c.fmt } },
+                            "color": { "field": "name", "type": "nominal",
+                                       "scale": { "domain": AREAS, "range": COLOURS }, "legend": null },
+                            "strokeDash": {
+                                "condition": { "test": "datum.name === 'Greater London'", "value": [6, 4] },
+                                "value": [1, 0]
+                            }
+                        }
+                    },
+                    {
+                        // Hover rule: one tooltip listing every area for the nearest year
+                        "transform": [{ "pivot": "name", "value": "value", "groupby": ["year", "date"] }],
+                        "mark": { "type": "rule", "color": "#9ca3af" },
+                        "encoding": {
+                            "opacity": { "condition": { "value": 1, "param": "hover", "empty": false }, "value": 0 },
+                            "tooltip": [{ "field": "date", "title": "Period" }].concat(
+                                AREAS.map(a => ({ "field": a, "type": "quantitative", "format": c.fmt }))
+                            )
+                        },
+                        "params": [{
+                            "name": "hover",
+                            "select": { "type": "point", "fields": ["year"], "nearest": true,
+                                        "on": "pointerover", "clear": "pointerout" }
+                        }]
+                    }
+                ],
+                "config": {
+                    "view": { "stroke": null },
+                    "font": "Inter",
+                    "axis": { "labelColor": "#6b7280", "labelFontSize": 11, "domainColor": "#d1d5db",
+                              "tickColor": "#d1d5db", "gridColor": "#eef0f3" }
+                }
+            };
+        }
+
+        const grid = document.getElementById("grid");
+        CHARTS.forEach((c, i) => {
+            const card = document.createElement("div");
+            card.className = "dash-card";
+            card.innerHTML = `<h3>${c.title}</h3><p class="unit">${c.unit}</p><div class="vis" id="dash${i}"></div>`;
+            grid.appendChild(card);
+            vegaEmbed("#dash" + i, spec(c), { actions: false }).catch(() => {
+                card.querySelector(".vis").innerHTML =
+                    `<p class="unit">Could not load ${c.file}.json. Check RAW_BASE and the file in your repo.</p>`;
+            });
+        });
+    </script>
+
+</body>
+</html>
