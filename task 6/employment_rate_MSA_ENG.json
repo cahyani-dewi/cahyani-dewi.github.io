@@ -1,0 +1,926 @@
+[
+ {
+  "area":"Greater London",
+  "year":2004.0,
+  "date":"2004",
+  "value":68.1
+ },
+ {
+  "area":"Greater London",
+  "year":2005.0,
+  "date":"2005",
+  "value":68.0
+ },
+ {
+  "area":"Greater London",
+  "year":2006.0,
+  "date":"2006",
+  "value":68.1
+ },
+ {
+  "area":"Greater London",
+  "year":2007.0,
+  "date":"2007",
+  "value":68.6
+ },
+ {
+  "area":"Greater London",
+  "year":2008.0,
+  "date":"2008",
+  "value":69.1
+ },
+ {
+  "area":"Greater London",
+  "year":2009.0,
+  "date":"2009",
+  "value":67.9
+ },
+ {
+  "area":"Greater London",
+  "year":2010.0,
+  "date":"2010",
+  "value":67.3
+ },
+ {
+  "area":"Greater London",
+  "year":2011.0,
+  "date":"2011",
+  "value":67.3
+ },
+ {
+  "area":"Greater London",
+  "year":2012.0,
+  "date":"2012",
+  "value":68.2
+ },
+ {
+  "area":"Greater London",
+  "year":2013.0,
+  "date":"2013",
+  "value":69.5
+ },
+ {
+  "area":"Greater London",
+  "year":2014.0,
+  "date":"2014",
+  "value":71.3
+ },
+ {
+  "area":"Greater London",
+  "year":2015.0,
+  "date":"2015",
+  "value":72.9
+ },
+ {
+  "area":"Greater London",
+  "year":2016.0,
+  "date":"2016",
+  "value":73.7
+ },
+ {
+  "area":"Greater London",
+  "year":2017.0,
+  "date":"2017",
+  "value":73.9
+ },
+ {
+  "area":"Greater London",
+  "year":2018.0,
+  "date":"2018",
+  "value":74.3
+ },
+ {
+  "area":"Greater London",
+  "year":2019.0,
+  "date":"2019",
+  "value":74.5
+ },
+ {
+  "area":"Greater London",
+  "year":2020.0,
+  "date":"2020",
+  "value":75.2
+ },
+ {
+  "area":"Greater London",
+  "year":2021.0,
+  "date":"2021",
+  "value":74.9
+ },
+ {
+  "area":"Greater London",
+  "year":2022.0,
+  "date":"2022",
+  "value":76.2
+ },
+ {
+  "area":"Greater London",
+  "year":2023.0,
+  "date":"2023",
+  "value":74.6
+ },
+ {
+  "area":"Greater London",
+  "year":2024.0,
+  "date":"2024",
+  "value":75.7
+ },
+ {
+  "area":"Greater London",
+  "year":2025.0,
+  "date":"2025",
+  "value":74.9
+ },
+ {
+  "area":"Greater Manchester",
+  "year":2004.0,
+  "date":"2004",
+  "value":70.3
+ },
+ {
+  "area":"Greater Manchester",
+  "year":2005.0,
+  "date":"2005",
+  "value":70.0
+ },
+ {
+  "area":"Greater Manchester",
+  "year":2006.0,
+  "date":"2006",
+  "value":70.7
+ },
+ {
+  "area":"Greater Manchester",
+  "year":2007.0,
+  "date":"2007",
+  "value":69.7
+ },
+ {
+  "area":"Greater Manchester",
+  "year":2008.0,
+  "date":"2008",
+  "value":68.5
+ },
+ {
+  "area":"Greater Manchester",
+  "year":2009.0,
+  "date":"2009",
+  "value":67.0
+ },
+ {
+  "area":"Greater Manchester",
+  "year":2010.0,
+  "date":"2010",
+  "value":67.0
+ },
+ {
+  "area":"Greater Manchester",
+  "year":2011.0,
+  "date":"2011",
+  "value":66.3
+ },
+ {
+  "area":"Greater Manchester",
+  "year":2012.0,
+  "date":"2012",
+  "value":66.9
+ },
+ {
+  "area":"Greater Manchester",
+  "year":2013.0,
+  "date":"2013",
+  "value":67.5
+ },
+ {
+  "area":"Greater Manchester",
+  "year":2014.0,
+  "date":"2014",
+  "value":69.0
+ },
+ {
+  "area":"Greater Manchester",
+  "year":2015.0,
+  "date":"2015",
+  "value":70.1
+ },
+ {
+  "area":"Greater Manchester",
+  "year":2016.0,
+  "date":"2016",
+  "value":70.4
+ },
+ {
+  "area":"Greater Manchester",
+  "year":2017.0,
+  "date":"2017",
+  "value":72.0
+ },
+ {
+  "area":"Greater Manchester",
+  "year":2018.0,
+  "date":"2018",
+  "value":72.8
+ },
+ {
+  "area":"Greater Manchester",
+  "year":2019.0,
+  "date":"2019",
+  "value":72.7
+ },
+ {
+  "area":"Greater Manchester",
+  "year":2020.0,
+  "date":"2020",
+  "value":72.2
+ },
+ {
+  "area":"Greater Manchester",
+  "year":2021.0,
+  "date":"2021",
+  "value":71.6
+ },
+ {
+  "area":"Greater Manchester",
+  "year":2022.0,
+  "date":"2022",
+  "value":72.4
+ },
+ {
+  "area":"Greater Manchester",
+  "year":2023.0,
+  "date":"2023",
+  "value":71.9
+ },
+ {
+  "area":"Greater Manchester",
+  "year":2024.0,
+  "date":"2024",
+  "value":71.0
+ },
+ {
+  "area":"Greater Manchester",
+  "year":2025.0,
+  "date":"2025",
+  "value":72.3
+ },
+ {
+  "area":"Liverpool City Region",
+  "year":2004.0,
+  "date":"2004",
+  "value":66.3
+ },
+ {
+  "area":"Liverpool City Region",
+  "year":2005.0,
+  "date":"2005",
+  "value":66.6
+ },
+ {
+  "area":"Liverpool City Region",
+  "year":2006.0,
+  "date":"2006",
+  "value":66.2
+ },
+ {
+  "area":"Liverpool City Region",
+  "year":2007.0,
+  "date":"2007",
+  "value":66.7
+ },
+ {
+  "area":"Liverpool City Region",
+  "year":2008.0,
+  "date":"2008",
+  "value":64.7
+ },
+ {
+  "area":"Liverpool City Region",
+  "year":2009.0,
+  "date":"2009",
+  "value":64.4
+ },
+ {
+  "area":"Liverpool City Region",
+  "year":2010.0,
+  "date":"2010",
+  "value":65.1
+ },
+ {
+  "area":"Liverpool City Region",
+  "year":2011.0,
+  "date":"2011",
+  "value":64.7
+ },
+ {
+  "area":"Liverpool City Region",
+  "year":2012.0,
+  "date":"2012",
+  "value":65.7
+ },
+ {
+  "area":"Liverpool City Region",
+  "year":2013.0,
+  "date":"2013",
+  "value":66.6
+ },
+ {
+  "area":"Liverpool City Region",
+  "year":2014.0,
+  "date":"2014",
+  "value":65.1
+ },
+ {
+  "area":"Liverpool City Region",
+  "year":2015.0,
+  "date":"2015",
+  "value":67.5
+ },
+ {
+  "area":"Liverpool City Region",
+  "year":2016.0,
+  "date":"2016",
+  "value":68.4
+ },
+ {
+  "area":"Liverpool City Region",
+  "year":2017.0,
+  "date":"2017",
+  "value":69.9
+ },
+ {
+  "area":"Liverpool City Region",
+  "year":2018.0,
+  "date":"2018",
+  "value":71.7
+ },
+ {
+  "area":"Liverpool City Region",
+  "year":2019.0,
+  "date":"2019",
+  "value":72.9
+ },
+ {
+  "area":"Liverpool City Region",
+  "year":2020.0,
+  "date":"2020",
+  "value":72.9
+ },
+ {
+  "area":"Liverpool City Region",
+  "year":2021.0,
+  "date":"2021",
+  "value":73.7
+ },
+ {
+  "area":"Liverpool City Region",
+  "year":2022.0,
+  "date":"2022",
+  "value":73.7
+ },
+ {
+  "area":"Liverpool City Region",
+  "year":2023.0,
+  "date":"2023",
+  "value":72.0
+ },
+ {
+  "area":"Liverpool City Region",
+  "year":2024.0,
+  "date":"2024",
+  "value":70.6
+ },
+ {
+  "area":"Liverpool City Region",
+  "year":2025.0,
+  "date":"2025",
+  "value":72.7
+ },
+ {
+  "area":"North East",
+  "year":2004.0,
+  "date":"2004",
+  "value":68.0
+ },
+ {
+  "area":"North East",
+  "year":2005.0,
+  "date":"2005",
+  "value":69.1
+ },
+ {
+  "area":"North East",
+  "year":2006.0,
+  "date":"2006",
+  "value":68.9
+ },
+ {
+  "area":"North East",
+  "year":2007.0,
+  "date":"2007",
+  "value":70.1
+ },
+ {
+  "area":"North East",
+  "year":2008.0,
+  "date":"2008",
+  "value":69.3
+ },
+ {
+  "area":"North East",
+  "year":2009.0,
+  "date":"2009",
+  "value":66.7
+ },
+ {
+  "area":"North East",
+  "year":2010.0,
+  "date":"2010",
+  "value":66.6
+ },
+ {
+  "area":"North East",
+  "year":2011.0,
+  "date":"2011",
+  "value":65.5
+ },
+ {
+  "area":"North East",
+  "year":2012.0,
+  "date":"2012",
+  "value":66.6
+ },
+ {
+  "area":"North East",
+  "year":2013.0,
+  "date":"2013",
+  "value":66.2
+ },
+ {
+  "area":"North East",
+  "year":2014.0,
+  "date":"2014",
+  "value":68.9
+ },
+ {
+  "area":"North East",
+  "year":2015.0,
+  "date":"2015",
+  "value":69.4
+ },
+ {
+  "area":"North East",
+  "year":2016.0,
+  "date":"2016",
+  "value":71.0
+ },
+ {
+  "area":"North East",
+  "year":2017.0,
+  "date":"2017",
+  "value":71.3
+ },
+ {
+  "area":"North East",
+  "year":2018.0,
+  "date":"2018",
+  "value":72.1
+ },
+ {
+  "area":"North East",
+  "year":2019.0,
+  "date":"2019",
+  "value":71.1
+ },
+ {
+  "area":"North East",
+  "year":2020.0,
+  "date":"2020",
+  "value":71.9
+ },
+ {
+  "area":"North East",
+  "year":2021.0,
+  "date":"2021",
+  "value":70.5
+ },
+ {
+  "area":"North East",
+  "year":2022.0,
+  "date":"2022",
+  "value":70.4
+ },
+ {
+  "area":"North East",
+  "year":2023.0,
+  "date":"2023",
+  "value":73.0
+ },
+ {
+  "area":"North East",
+  "year":2024.0,
+  "date":"2024",
+  "value":70.2
+ },
+ {
+  "area":"North East",
+  "year":2025.0,
+  "date":"2025",
+  "value":71.1
+ },
+ {
+  "area":"South Yorkshire",
+  "year":2004.0,
+  "date":"2004",
+  "value":69.1
+ },
+ {
+  "area":"South Yorkshire",
+  "year":2005.0,
+  "date":"2005",
+  "value":69.9
+ },
+ {
+  "area":"South Yorkshire",
+  "year":2006.0,
+  "date":"2006",
+  "value":67.6
+ },
+ {
+  "area":"South Yorkshire",
+  "year":2007.0,
+  "date":"2007",
+  "value":69.4
+ },
+ {
+  "area":"South Yorkshire",
+  "year":2008.0,
+  "date":"2008",
+  "value":68.1
+ },
+ {
+  "area":"South Yorkshire",
+  "year":2009.0,
+  "date":"2009",
+  "value":65.4
+ },
+ {
+  "area":"South Yorkshire",
+  "year":2010.0,
+  "date":"2010",
+  "value":66.8
+ },
+ {
+  "area":"South Yorkshire",
+  "year":2011.0,
+  "date":"2011",
+  "value":65.2
+ },
+ {
+  "area":"South Yorkshire",
+  "year":2012.0,
+  "date":"2012",
+  "value":66.5
+ },
+ {
+  "area":"South Yorkshire",
+  "year":2013.0,
+  "date":"2013",
+  "value":68.5
+ },
+ {
+  "area":"South Yorkshire",
+  "year":2014.0,
+  "date":"2014",
+  "value":69.8
+ },
+ {
+  "area":"South Yorkshire",
+  "year":2015.0,
+  "date":"2015",
+  "value":71.0
+ },
+ {
+  "area":"South Yorkshire",
+  "year":2016.0,
+  "date":"2016",
+  "value":68.8
+ },
+ {
+  "area":"South Yorkshire",
+  "year":2017.0,
+  "date":"2017",
+  "value":71.7
+ },
+ {
+  "area":"South Yorkshire",
+  "year":2018.0,
+  "date":"2018",
+  "value":72.7
+ },
+ {
+  "area":"South Yorkshire",
+  "year":2019.0,
+  "date":"2019",
+  "value":72.9
+ },
+ {
+  "area":"South Yorkshire",
+  "year":2020.0,
+  "date":"2020",
+  "value":71.9
+ },
+ {
+  "area":"South Yorkshire",
+  "year":2021.0,
+  "date":"2021",
+  "value":72.4
+ },
+ {
+  "area":"South Yorkshire",
+  "year":2022.0,
+  "date":"2022",
+  "value":73.3
+ },
+ {
+  "area":"South Yorkshire",
+  "year":2023.0,
+  "date":"2023",
+  "value":71.7
+ },
+ {
+  "area":"South Yorkshire",
+  "year":2024.0,
+  "date":"2024",
+  "value":72.5
+ },
+ {
+  "area":"South Yorkshire",
+  "year":2025.0,
+  "date":"2025",
+  "value":72.4
+ },
+ {
+  "area":"West Midlands",
+  "year":2004.0,
+  "date":"2004",
+  "value":67.8
+ },
+ {
+  "area":"West Midlands",
+  "year":2005.0,
+  "date":"2005",
+  "value":67.5
+ },
+ {
+  "area":"West Midlands",
+  "year":2006.0,
+  "date":"2006",
+  "value":66.6
+ },
+ {
+  "area":"West Midlands",
+  "year":2007.0,
+  "date":"2007",
+  "value":66.6
+ },
+ {
+  "area":"West Midlands",
+  "year":2008.0,
+  "date":"2008",
+  "value":64.4
+ },
+ {
+  "area":"West Midlands",
+  "year":2009.0,
+  "date":"2009",
+  "value":62.6
+ },
+ {
+  "area":"West Midlands",
+  "year":2010.0,
+  "date":"2010",
+  "value":62.4
+ },
+ {
+  "area":"West Midlands",
+  "year":2011.0,
+  "date":"2011",
+  "value":62.6
+ },
+ {
+  "area":"West Midlands",
+  "year":2012.0,
+  "date":"2012",
+  "value":62.8
+ },
+ {
+  "area":"West Midlands",
+  "year":2013.0,
+  "date":"2013",
+  "value":63.4
+ },
+ {
+  "area":"West Midlands",
+  "year":2014.0,
+  "date":"2014",
+  "value":64.9
+ },
+ {
+  "area":"West Midlands",
+  "year":2015.0,
+  "date":"2015",
+  "value":64.6
+ },
+ {
+  "area":"West Midlands",
+  "year":2016.0,
+  "date":"2016",
+  "value":65.5
+ },
+ {
+  "area":"West Midlands",
+  "year":2017.0,
+  "date":"2017",
+  "value":67.3
+ },
+ {
+  "area":"West Midlands",
+  "year":2018.0,
+  "date":"2018",
+  "value":68.2
+ },
+ {
+  "area":"West Midlands",
+  "year":2019.0,
+  "date":"2019",
+  "value":69.1
+ },
+ {
+  "area":"West Midlands",
+  "year":2020.0,
+  "date":"2020",
+  "value":69.7
+ },
+ {
+  "area":"West Midlands",
+  "year":2021.0,
+  "date":"2021",
+  "value":69.8
+ },
+ {
+  "area":"West Midlands",
+  "year":2022.0,
+  "date":"2022",
+  "value":69.2
+ },
+ {
+  "area":"West Midlands",
+  "year":2023.0,
+  "date":"2023",
+  "value":70.5
+ },
+ {
+  "area":"West Midlands",
+  "year":2024.0,
+  "date":"2024",
+  "value":69.5
+ },
+ {
+  "area":"West Midlands",
+  "year":2025.0,
+  "date":"2025",
+  "value":69.2
+ },
+ {
+  "area":"West Yorkshire",
+  "year":2004.0,
+  "date":"2004",
+  "value":72.3
+ },
+ {
+  "area":"West Yorkshire",
+  "year":2005.0,
+  "date":"2005",
+  "value":72.0
+ },
+ {
+  "area":"West Yorkshire",
+  "year":2006.0,
+  "date":"2006",
+  "value":73.3
+ },
+ {
+  "area":"West Yorkshire",
+  "year":2007.0,
+  "date":"2007",
+  "value":71.4
+ },
+ {
+  "area":"West Yorkshire",
+  "year":2008.0,
+  "date":"2008",
+  "value":71.2
+ },
+ {
+  "area":"West Yorkshire",
+  "year":2009.0,
+  "date":"2009",
+  "value":69.2
+ },
+ {
+  "area":"West Yorkshire",
+  "year":2010.0,
+  "date":"2010",
+  "value":67.5
+ },
+ {
+  "area":"West Yorkshire",
+  "year":2011.0,
+  "date":"2011",
+  "value":66.5
+ },
+ {
+  "area":"West Yorkshire",
+  "year":2012.0,
+  "date":"2012",
+  "value":67.9
+ },
+ {
+  "area":"West Yorkshire",
+  "year":2013.0,
+  "date":"2013",
+  "value":68.5
+ },
+ {
+  "area":"West Yorkshire",
+  "year":2014.0,
+  "date":"2014",
+  "value":69.2
+ },
+ {
+  "area":"West Yorkshire",
+  "year":2015.0,
+  "date":"2015",
+  "value":71.3
+ },
+ {
+  "area":"West Yorkshire",
+  "year":2016.0,
+  "date":"2016",
+  "value":71.7
+ },
+ {
+  "area":"West Yorkshire",
+  "year":2017.0,
+  "date":"2017",
+  "value":73.2
+ },
+ {
+  "area":"West Yorkshire",
+  "year":2018.0,
+  "date":"2018",
+  "value":72.3
+ },
+ {
+  "area":"West Yorkshire",
+  "year":2019.0,
+  "date":"2019",
+  "value":72.3
+ },
+ {
+  "area":"West Yorkshire",
+  "year":2020.0,
+  "date":"2020",
+  "value":74.8
+ },
+ {
+  "area":"West Yorkshire",
+  "year":2021.0,
+  "date":"2021",
+  "value":72.9
+ },
+ {
+  "area":"West Yorkshire",
+  "year":2022.0,
+  "date":"2022",
+  "value":73.4
+ },
+ {
+  "area":"West Yorkshire",
+  "year":2023.0,
+  "date":"2023",
+  "value":73.6
+ },
+ {
+  "area":"West Yorkshire",
+  "year":2024.0,
+  "date":"2024",
+  "value":71.5
+ },
+ {
+  "area":"West Yorkshire",
+  "year":2025.0,
+  "date":"2025",
+  "value":72.6
+ }
+]
