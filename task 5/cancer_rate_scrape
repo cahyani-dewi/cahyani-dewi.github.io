@@ -1,0 +1,114 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Where less cancer is diagnosed, more of it turns fatal",
+    "subtitle": [
+      "Age-standardised rates per 100,000 people, 2022. Dashed lines show deaths per 100 new cases.",
+      "Source: GLOBOCAN 2022 via Wikipedia"
+    ],
+    "anchor": "start", "fontSize": 17, "fontWeight": 600, "subtitleFontSize": 12,
+    "subtitleColor": "#6b6a65", "subtitlePadding": 6, "offset": 14
+  },
+  "width": 620,
+  "height": 420,
+  "params": [
+    {"name": "nmsc_sel", "value": "Including",
+     "bind": {"input": "radio", "options": ["Including", "Excluding"],
+              "labels": ["Included", "Excluded"], "name": "Skin cancer (NMSC) "}},
+    {"name": "sex_sel", "value": "All",
+     "bind": {"input": "radio", "options": ["All", "Male", "Female"],
+              "labels": ["Everyone", "Men", "Women"], "name": "Sex "}}
+  ],
+  "layer": [
+    {
+      "data": {"values": [
+        {"r": "25 per 100", "x": 0, "y": 0}, {"r": "25 per 100", "x": 550, "y": 137.5},
+        {"r": "50 per 100", "x": 0, "y": 0}, {"r": "50 per 100", "x": 500, "y": 250},
+        {"r": "75 per 100", "x": 0, "y": 0}, {"r": "75 per 100", "x": 333.3, "y": 250}
+      ]},
+      "mark": {"type": "line", "strokeDash": [4, 4], "strokeWidth": 1, "color": "#b4b2a9", "clip": true},
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative"},
+        "y": {"field": "y", "type": "quantitative"},
+        "detail": {"field": "r"}
+      }
+    },
+    {
+      "data": {"values": [
+        {"r": "25 deaths per 100 cases", "x": 545, "y": 128},
+        {"r": "50 per 100", "x": 470, "y": 241},
+        {"r": "75 per 100", "x": 318, "y": 241}
+      ]},
+      "mark": {"type": "text", "align": "right", "fontSize": 11, "fontStyle": "italic", "color": "#888780"},
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative"},
+        "y": {"field": "y", "type": "quantitative"},
+        "text": {"field": "r"}
+      }
+    },
+    {
+      "data": {"url": "https://raw.githubusercontent.com/cahyani-dewi/cahyani-dewi.github.io/refs/heads/main/task%205/task5_cancer_rates_tidy.csv", "format": {"type": "csv", "parse": {"value": "number"}}},
+      "transform": [
+        {"filter": "datum.metric == 'rate' && datum.nmsc == nmsc_sel && datum.sex == sex_sel"},
+        {"pivot": "measure", "value": "value", "groupby": ["country", "group"]},
+        {"filter": "isValid(datum.incidence) && isValid(datum.mortality)"},
+        {"calculate": "round(100 * datum.mortality / datum.incidence)", "as": "deaths_per_100"},
+        {"calculate": "datum.group == 'World' ? 2 : datum.group == 'ASEAN' ? 1 : 0", "as": "z"},
+        {"calculate": "indexof(['Indonesia','Philippines','Singapore','Mongolia','Hungary','Australia','United States','Japan','Saudi Arabia','World'], datum.country) >= 0", "as": "labelled"}
+      ],
+      "encoding": {
+        "x": {"field": "incidence", "type": "quantitative", "title": "New cancer cases per 100,000 (incidence)",
+              "scale": {"domain": [0, 550], "nice": false}, "axis": {"tickCount": 6}},
+        "y": {"field": "mortality", "type": "quantitative", "title": "Cancer deaths per 100,000 (mortality)",
+              "scale": {"domain": [0, 250], "nice": false}, "axis": {"tickCount": 5}}
+      },
+      "layer": [
+        {
+          "mark": {"type": "point", "filled": true, "stroke": "white", "strokeWidth": 0.8},
+          "encoding": {
+            "color": {"field": "group", "type": "nominal", "title": null,
+                      "scale": {"domain": ["ASEAN", "Other countries", "World"],
+                                "range": ["#e2622b", "#c9c7bf", "#2c2c2a"]},
+                      "legend": {"orient": "top", "direction": "horizontal", "offset": 4,
+                                 "labelFontSize": 12, "symbolSize": 90}},
+            "shape": {"field": "group", "type": "nominal", "title": null,
+                      "scale": {"domain": ["ASEAN", "Other countries", "World"],
+                                "range": ["circle", "circle", "diamond"]}},
+            "size": {"field": "group", "type": "nominal", "legend": null,
+                     "scale": {"domain": ["ASEAN", "Other countries", "World"], "range": [95, 45, 130]}},
+            "opacity": {"field": "group", "type": "nominal", "legend": null,
+                        "scale": {"domain": ["ASEAN", "Other countries", "World"], "range": [1, 0.75, 1]}},
+            "order": {"field": "z", "type": "quantitative"},
+            "tooltip": [
+              {"field": "country", "title": "Country"},
+              {"field": "incidence", "type": "quantitative", "format": ".1f", "title": "New cases per 100k"},
+              {"field": "mortality", "type": "quantitative", "format": ".1f", "title": "Deaths per 100k"},
+              {"field": "deaths_per_100", "type": "quantitative", "title": "Deaths per 100 cases"}
+            ]
+          }
+        },
+        {
+          "transform": [{"filter": "datum.labelled"}],
+          "mark": {"type": "text", "align": "left", "dx": 8, "dy": -6, "fontSize": 11.5,
+                   "stroke": "white", "strokeWidth": 3, "strokeJoin": "round"},
+          "encoding": {"text": {"field": "country"}}
+        },
+        {
+          "transform": [{"filter": "datum.labelled"}],
+          "mark": {"type": "text", "align": "left", "dx": 8, "dy": -6, "fontSize": 11.5, "fontWeight": 500},
+          "encoding": {
+            "text": {"field": "country"},
+            "color": {"condition": {"test": "datum.group == 'ASEAN'", "value": "#b4481c"}, "value": "#444441"}
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "font": "Helvetica, Arial, sans-serif",
+    "view": {"stroke": null},
+    "axis": {"gridColor": "#eceae4", "domainColor": "#b4b2a9", "tickColor": "#b4b2a9",
+             "labelColor": "#6b6a65", "labelFontSize": 11, "titleColor": "#444441",
+             "titleFontSize": 12, "titleFontWeight": 500, "titlePadding": 10}
+  }
+}
